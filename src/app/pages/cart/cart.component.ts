@@ -8,7 +8,7 @@ import { Apollo, gql } from 'apollo-angular';
 })
 export class CartComponent implements OnInit {
   user: any;
-  cart: any;
+  cart: any = [];
   id: any;
   auth: any;
 
@@ -36,6 +36,30 @@ export class CartComponent implements OnInit {
     }
   }
 
+  removeCart(gameid: string | undefined): void {
+    const userid = this.user.id;
+    this.apollo
+      .mutate({
+        mutation: gql`
+          mutation asdf($gameid: ID!, $userid: ID!) {
+            deleteCartByGameId(input: { gameid: $gameid, userid: $userid }) {
+              gameid
+              userid
+              game {
+                id
+                name
+                price
+              }
+            }
+          }
+        `,
+        variables: { gameid, userid },
+      })
+      .subscribe(({ data }) => {
+        window.location.reload();
+      });
+  }
+
   private getUser(): void {
     const id = this.id;
     this.apollo
@@ -57,20 +81,20 @@ export class CartComponent implements OnInit {
       })
       .subscribe(({ data }) => {
         this.user = (data as any).getUserById;
-        this.getCart(this.id);
+        this.getCart(this.user.id.toString());
       });
   }
 
-  private getCart(id: string): void {
+  private getCart(userid: string): void {
     this.apollo
       .query({
         query: gql`
           query asdf($userid: String!) {
             getCartById(input: $userid) {
-              id
               gameid
               userid
               game {
+                id
                 name
                 price
                 image
@@ -78,16 +102,11 @@ export class CartComponent implements OnInit {
             }
           }
         `,
-        variables: { userid: id },
+        variables: { userid },
       })
       .subscribe(({ data }) => {
         this.cart = (data as any).getCartById;
+        console.log(this.cart);
       });
-  }
-
-  removeCart(gameid: string | undefined) {
-    this.apollo.mutate({
-      mutation: gql``,
-    });
   }
 }

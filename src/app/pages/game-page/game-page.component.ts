@@ -23,6 +23,7 @@ export class GamePageComponent implements OnInit {
   id: string | undefined;
   owned = false;
   wish = false;
+  reviews1: any;
 
   InputReviewForm = this.fb.group({
     textarea: ['', Validators.required],
@@ -40,6 +41,7 @@ export class GamePageComponent implements OnInit {
     this.getGameById(this.gameId);
     this.getSystemRequirement(this.gameId);
     this.getMostHelpfulReview(this.gameId);
+    this.getRecentReview(this.gameId);
     if (localStorage.getItem('jwt')) {
       const token: string | null = localStorage.getItem('jwt');
       this.apollo
@@ -345,6 +347,35 @@ export class GamePageComponent implements OnInit {
       .subscribe(({ data }) => {
         this.reviews = (data as any).getMostHelpfulReview;
         console.log(this.reviews);
+      });
+  }
+
+  private getRecentReview(id: string | null): void {
+    this.apollo
+      .query({
+        query: gql`
+          query adsfd($id: String!) {
+            getRecentReview(input: $id) {
+              id
+              game {
+                id
+              }
+              user {
+                name
+                image
+              }
+              description
+              rating
+              positive
+              negative
+            }
+          }
+        `,
+        variables: { id },
+      })
+      .subscribe(({ data }) => {
+        this.reviews1 = (data as any).getRecentReview;
+        console.log(this.reviews1);
       });
   }
 }

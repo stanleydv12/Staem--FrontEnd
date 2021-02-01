@@ -1,0 +1,164 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Cart {
+  game: Game!
+  gameid: ID!
+  userid: ID!
+}
+
+type Country {
+  id: ID!
+  name: String!
+}
+
+type Game {
+  about: String!
+  banner: String!
+  description: String!
+  genre: String!
+  id: ID!
+  image: String!
+  name: String!
+  price: Int!
+  tag: String!
+}
+
+type GameImage {
+  gameid: ID!
+  id: ID!
+  image: String!
+}
+
+type GameReview {
+  description: String!
+  game: Game!
+  id: ID!
+  negative: Int!
+  positive: Int!
+  rating: String!
+  user: User!
+}
+
+type GameVideo {
+  gameid: ID!
+  id: ID!
+  videolink: String!
+}
+
+type Game_Slider {
+  id: ID!
+  image: String!
+  name: String!
+}
+
+type MinimumRequirement {
+  gameid: ID!
+  graphics: String!
+  id: ID!
+  memory: String!
+  os: String!
+  processor: String!
+  storage: String!
+}
+
+type Mutation {
+  deleteCartByGameId(input: InputCart!): Cart!
+  deleteWishlist(input: InputWishlist!): Wishlist!
+  inputCart(input: InputCart!): Cart!
+  inputWishlist(input: InputWishlist!): Wishlist!
+  insertReview(input: InputReview!): GameReview!
+  register(input: InputUser!): User!
+  updateNegativeReview(input: String!): GameReview!
+  updatePositiveReview(input: String!): GameReview!
+}
+
+type OwnedGame {
+  game: Game!
+  id: ID!
+  user: User!
+}
+
+type Query {
+  auth(input: String!): Int!
+  checkOwnedGame(input: InputOwnedGame!): Boolean!
+  checkWishlist(input: InputWishlist!): Boolean!
+  countries: [Country!]!
+  getCartById(input: String!): [Cart!]!
+  getGameById(input: String!): Game!
+  getGameByTag(input: String!): [Game!]!
+  getGameImageById(input: String!): [GameImage!]!
+  getGameVideoById(input: String!): GameVideo!
+  getImageSlider: [Game_Slider!]!
+  getMinimumRequirement(input: String!): MinimumRequirement!
+  getMostHelpfulReview(input: String!): [GameReview!]!
+  getRecentReview(input: String!): [GameReview!]!
+  getRecommendedRequirement(input: String!): RecommendedRequirement!
+  getUserById(input: ID!): User!
+  login(input: LoginUser!): String!
+  users: [User!]!
+}
+
+type RecommendedRequirement {
+  gameid: ID!
+  graphics: String!
+  id: ID!
+  memory: String!
+  os: String!
+  processor: String!
+  storage: String!
+}
+
+type User {
+  country: String!
+  email: String!
+  id: ID!
+  image: String!
+  name: String!
+  password: String!
+  wallet: Float!
+}
+
+type Wishlist {
+  gameid: ID!
+  id: ID!
+  userid: ID!
+}
+
+input InputCart {
+  gameid: ID!
+  userid: ID!
+}
+
+input InputOwnedGame {
+  gameid: ID!
+  userid: ID!
+}
+
+input InputReview {
+  description: String!
+  gameid: ID!
+  rating: String!
+  userid: ID!
+}
+
+input InputUser {
+  country: String!
+  email: String!
+  name: String!
+  password: String!
+}
+
+input InputWishlist {
+  gameid: ID!
+  userid: ID!
+}
+
+input LoginUser {
+  email: String!
+  password: String!
+}

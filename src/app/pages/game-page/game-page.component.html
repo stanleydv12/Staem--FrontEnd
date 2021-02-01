@@ -134,7 +134,7 @@
     </div>
   </div>
 
-  <form *ngIf="auth" [formGroup]="InputReviewForm">
+  <form *ngIf="auth && owned" [formGroup]="InputReviewForm">
     <textarea formControlName="textarea" cols="60" rows="5"></textarea>
     <br />
     <select formControlName="rating" id="rating">

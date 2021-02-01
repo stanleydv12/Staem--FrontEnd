@@ -17,7 +17,16 @@
     </div>
   </div>
 
-  <div *ngIf="cart?.count === 0"></div>
+  <p *ngIf="cart?.length === 0">Your Cart is empty</p>
+
+  <div *ngIf="cart?.length > 1" class="cart-button">
+    <div class="btn-1">
+      <a href=""><span>Purchase for gift</span></a>
+    </div>
+    <div class="btn-1">
+      <a href=""><span>Purchase for myself</span></a>
+    </div>
+  </div>
 </div>
 
 <app-footer></app-footer>
