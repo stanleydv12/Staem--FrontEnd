@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h1>Your Shopping Cart</h1>
+
+  <hr style="width: 50%; text-align: left; margin-left: 0" />
+
+  <div *ngIf="auth">
+    <div class="cart-container" *ngFor="let c of cart">
+      <img src="{{ c.game.image }}" alt="" />
+      <p>{{ c.game.name }}</p>
+
+      <div>
+        <p>${{ c.game.price }}</p>
+        <a href="" (click)="removeCart(c.gameid)">remove</a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cart?.count === 0"></div>
+</div>
+
+<app-footer></app-footer>

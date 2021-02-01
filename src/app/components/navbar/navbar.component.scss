@@ -1,0 +1,113 @@
+@import "../../styles/variables";
+
+@font-face {
+  font-family: "Space Marine Nominal";
+  src: URL("SM.TTF") format("truetype");
+}
+
+@font-face {
+  font-family: "Electrofied";
+  src: URL("electr.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Dubai Light";
+  src: URL("DUBAI-LIGHT.TTF") format("truetype");
+}
+
+#parent {
+  overflow: hidden;
+}
+
+#child {
+  overflow-y: scroll;
+}
+
+.topnav {
+  padding: 1em 0 0 1em;
+  overflow: hidden;
+  background-color: $menu-bar;
+}
+
+.topnav li {
+  float: left;
+  margin: 5px;
+  list-style-type: none;
+}
+.topnav li:hover a::before {
+  right: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 400px) {
+  .topnav a {
+    font-size: 10px;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 5px;
+    display: block;
+    position: relative;
+    transition: all 0.4s ease;
+    font-family: Electrofied;
+  }
+}
+
+.topnav a {
+  color: $primary-text;
+  font-size: 10px;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.4s ease;
+  font-family: Electrofied;
+}
+
+.topnav a:hover {
+  color: #eeeeee;
+}
+.topnav a::before {
+  content: "";
+  transition: all 0.4s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background-color: #03dac5;
+}
+.topnav a:hover::before {
+  bottom: 10%;
+}
+
+.topnav a.active {
+  color: #03dac5;
+}
+
+.logo img {
+  width: 8vw;
+  min-width: 100px;
+}
+
+.user-image img {
+  width: 30px;
+  min-width: 30px;
+}
+
+.user-image {
+  border: 2px solid black;
+  padding: 5px;
+}
+
+.topnav p {
+  color: $primary-text;
+  font-size: 10px;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.4s ease;
+  font-family: "Dubai Light";
+}

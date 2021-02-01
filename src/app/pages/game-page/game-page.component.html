@@ -1,0 +1,155 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h2>{{ gameDetail.name }}</h2>
+  <div class="selected-bar">
+    <img *ngIf="selectedType === 'image'" src="{{ selectedLink }}" alt="" />
+    <video
+      *ngIf="selectedType === 'video'"
+      src="{{ selectedLink }}"
+      autoplay
+    ></video>
+  </div>
+  <div class="gamebar">
+    <div class="videologo" (click)="selectVideo()">
+      <img src="./assets/icons/video.png" alt="" />
+    </div>
+    <div
+      *ngFor="let gameImage of gameImages"
+      (click)="selectImage(gameImage.image)"
+    >
+      <img src="{{ gameImage.image }}" alt="" />
+    </div>
+  </div>
+
+  <hr
+    *ngIf="auth == false"
+    style="width: 50%; text-align: left; margin-left: 0"
+  />
+  <p *ngIf="auth == false">
+    <a href="/login">Sign In</a> to add this item to your wishlist, follow it,
+    or mark it as not interested
+  </p>
+  <hr style="width: 50%; text-align: left; margin-left: 0" />
+
+  <h2>About this game</h2>
+
+  <div class="about-container">
+    <p>{{ gameDetail.about }}</p>
+  </div>
+
+  <hr style="width: 50%; text-align: left; margin-left: 0" />
+
+  <h2>System Requirements</h2>
+
+  <div class="requirement-container">
+    <div>
+      <p>MINIMUM REQUIREMENT</p>
+      <p>OS :{{ minRequirement.os }}</p>
+      <p>Processor :{{ minRequirement.processor }}</p>
+      <p>Memory :{{ minRequirement.memory }}</p>
+      <p>Graphics :{{ minRequirement.graphics }}</p>
+      <p>Storage :{{ minRequirement.storage }}</p>
+    </div>
+    <div>
+      <p>RECOMMENDED REQUIREMENT</p>
+      <p>OS :{{ recRequirement.os }}</p>
+      <p>Processor :{{ recRequirement.processor }}</p>
+      <p>Memory :{{ recRequirement.memory }}</p>
+      <p>Graphics :{{ recRequirement.graphics }}</p>
+      <p>Storage :{{ recRequirement.storage }}</p>
+    </div>
+  </div>
+
+  <hr style="width: 50%; text-align: left; margin-left: 0" />
+
+  <div class="game-button">
+    <img
+      *ngIf="wish == false"
+      (click)="inputWishlist(gameId, user.id)"
+      src="./assets/icons/e-heart.png"
+      alt=""
+    />
+    <img
+      *ngIf="wish"
+      (click)="deleteWishlist(gameId, user.id)"
+      src="./assets/icons/f-heart.png"
+      alt=""
+    />
+    <img src="./assets/icons/shopping-cart.png" alt="" />
+  </div>
+
+  <hr style="width: 50%; text-align: left; margin-left: 0" />
+
+  <h2>Most Helpful Review</h2>
+  <div class="review-container" *ngFor="let rev of reviews">
+    <div class="review-1-container">
+      <div><img src="{{ rev.user.image }}" alt="" /></div>
+      <div>
+        <p>{{ rev.user.name }}</p>
+      </div>
+      <img
+        class="user-rating"
+        *ngIf="rev.rating === 'Positive'"
+        src="./assets/icons/positive%20.png"
+        alt=""
+      />
+      <img
+        class="user-rating"
+        *ngIf="rev.rating === 'Negative'"
+        src="./assets/icons/negative.png"
+        alt=""
+      />
+      <p *ngIf="rev.rating === 'Positive'">Recommended</p>
+      <p *ngIf="rev.rating === 'Negative'">Not Recommended</p>
+    </div>
+    <hr
+      style="
+        width: 100%;
+        text-align: left;
+        margin-left: 0;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      "
+    />
+    <p>{{ rev.description }}</p>
+    <hr style="width: 100%; text-align: left; margin-top: 1rem" />
+    <div class="thumbs">
+      <div>
+        <img
+          (click)="thumbsup(rev.id.toString())"
+          src="./assets/icons/positive%20.png"
+          alt=""
+        />
+        <p>{{ rev.positive }} people found this helpful</p>
+      </div>
+      <div>
+        <img
+          (click)="thumbsdown(rev.id.toString())"
+          src="./assets/icons/negative.png"
+          alt=""
+        />
+        <p>{{ rev.negative }} people found this not helpful</p>
+      </div>
+    </div>
+  </div>
+
+  <form *ngIf="auth" [formGroup]="InputReviewForm">
+    <textarea formControlName="textarea" cols="60" rows="5"></textarea>
+    <br />
+    <select formControlName="rating" id="rating">
+      <option>Recommended</option>
+      <option>Not Recommended</option>
+    </select>
+    <br />
+    <input
+      (click)="insertReview()"
+      type="submit"
+      value="Submit"
+      id="submitButton"
+      class="btn btn-one"
+    />
+  </form>
+</div>
+
+<app-footer></app-footer>

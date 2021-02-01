@@ -1,0 +1,3 @@
+ctrl + alt + shift + j = select semua yang diblok
+ng g c folder/nama -m app
+embed abreviation

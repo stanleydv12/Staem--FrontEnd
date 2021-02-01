@@ -1,0 +1,93 @@
+@import "../../styles/variables";
+
+@font-face {
+  font-family: "Space Marine Nominal";
+  src: URL("SM.TTF") format("truetype");
+}
+
+@font-face {
+  font-family: "Electrofied";
+  src: URL("electr.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Dubai Light";
+  src: URL("DUBAI-LIGHT.TTF") format("truetype");
+}
+
+html {
+  background-color: $background-color;
+}
+
+.sidenav {
+  margin: 7rem 0 0 2rem;
+  padding: 1rem;
+  background: #eee;
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-family: "Space Marine Nominal";
+  font-size: 10px;
+  color: #2196f3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+  font-family: "Space Marine Nominal";
+  font-size: 10px;
+}
+
+.container {
+  height: 100vh;
+}
+
+p {
+  font-family: "Space Marine Nominal";
+  font-size: 13px;
+  color: white;
+  margin: 1em;
+}
+
+.center-container {
+  margin-left: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    font-family: "Space Marine Nominal";
+    color: white;
+  }
+}
+
+.two-grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+
+  img,
+  div {
+    margin: 1em;
+  }
+
+  div {
+    background-color: $top-gradient;
+  }
+
+  div:hover {
+    background-color: $bottom-gradient;
+  }
+
+  p {
+    font-family: "Dubai Light";
+    color: white;
+  }
+}

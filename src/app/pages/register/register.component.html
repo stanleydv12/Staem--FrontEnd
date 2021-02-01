@@ -1,0 +1,94 @@
+<app-navbar></app-navbar>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script
+  src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+  async
+  defer
+></script>
+<script type="text/javascript">
+  var onloadCallback = function () {
+    alert("grecaptcha is ready!");
+  };
+</script>
+
+<div class="title">Register</div>
+
+<div class="container">
+  <ul>
+    <form [formGroup]="registerForm">
+      <li>
+        <!-- <label for="">Display Name / Username</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="text"
+          formControlName="username"
+          placeholder="Account Name"
+          id="username"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Email</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="text"
+          formControlName="email"
+          placeholder="Email"
+          id="email"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Password</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          id="password"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Password</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="password"
+          formControlName="c_password"
+          placeholder="Confirm Password"
+          id="c_password"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Country</label> -->
+        <select formControlName="country" id="country">
+          <option value="-Country-">-Country-</option>
+          <option *ngFor="let country of countries">{{ country }}</option>
+        </select>
+      </li>
+      <br />
+      <br />
+
+      <re-captcha
+        (resolved)="resolved($event)"
+        siteKey="6LdtTToaAAAAAOw79FNiGnQb9-FiZxKYmCo5zw6B"
+      ></re-captcha>
+      <br />
+      <br />
+
+      <!-- <div class="btn btn-one"> -->
+      <input
+        type="submit"
+        value="Submit"
+        id="submitButton"
+        (click)="onSubmit()"
+        class="btn btn-one"
+      />
+      <!-- </div> -->
+    </form>
+  </ul>
+</div>
+
+<app-footer></app-footer>
