@@ -1,22 +1,31 @@
-<ul class="topnav">
-  <li class="logo">
-    <img src="./assets/logo.svg" alt="" class="responsive" />
-  </li>
-  <li><a href="/">STORE</a></li>
-  <li><a href="Library.html">COMMUNITY</a></li>
-  <li><a href="News.html">ABOUT</a></li>
-  <li><a href="About.html">SUPPORT</a></li>
+<div class="content">
+  <div>
+    <ul class="topnav">
+      <li class="logo">
+        <img src="./assets/logo.svg" alt="" class="responsive" />
+      </li>
+      <li><a href="/">STORE</a></li>
+      <li><a href="Library.html">COMMUNITY</a></li>
+      <li><a href="News.html">ABOUT</a></li>
+      <li><a href="About.html">SUPPORT</a></li>
 
-  <li *ngIf="auth == false"><a href="/login">LOGIN</a></li>
-  <li class="user-image" *ngIf="auth"><img src="{{ user.image }}" alt="" /></li>
-  <li *ngIf="auth">
-    <a class="active" href="">{{ user.name }}</a>
-  </li>
+      <li *ngIf="auth == false"><a href="/login">LOGIN</a></li>
+      <li class="user-image" *ngIf="auth">
+        <img src="{{ user.image }}" alt="" />
+      </li>
+      <li *ngIf="auth">
+        <a class="active" href="">{{ user.name }}</a>
+      </li>
 
-  <li *ngIf="auth">
-    <p>${{ user.wallet }}</p>
-  </li>
+      <li *ngIf="auth">
+        <p>${{ user.wallet }}</p>
+      </li>
 
-  <li><a href="About.html">LANGUAGE</a></li>
-  <li *ngIf="auth"><a href="/" (click)="requestLogOut()">Log out</a></li>
-</ul>
+      <li><a href="About.html">LANGUAGE</a></li>
+      <li *ngIf="auth"><a href="/" (click)="requestLogOut()">Log out</a></li>
+
+      <li *ngIf="auth"><a href="cart">CART</a></li>
+    </ul>
+  </div>
+  <app-searchbar></app-searchbar>
+</div>

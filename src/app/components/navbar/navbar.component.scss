@@ -27,6 +27,7 @@
   padding: 1em 0 0 1em;
   overflow: hidden;
   background-color: $menu-bar;
+  min-width: 800px;
 }
 
 .topnav li {
@@ -86,7 +87,7 @@
 
 .logo img {
   width: 8vw;
-  min-width: 100px;
+  min-width: 8vw;
 }
 
 .user-image img {
@@ -110,4 +111,10 @@
   position: relative;
   transition: all 0.4s ease;
   font-family: "Dubai Light";
+}
+
+.content {
+  display: flex;
+  background-color: #121212;
+  justify-content: space-between;
 }

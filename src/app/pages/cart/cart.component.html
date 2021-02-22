@@ -12,19 +12,21 @@
 
       <div>
         <p>${{ c.game.price }}</p>
-        <a href="" (click)="removeCart(c.gameid)">remove</a>
+        <a href="" (click)="triggerModal(c.gameid)">remove</a>
       </div>
     </div>
+
+    <p *ngIf="cart?.length > 0">Subtotal : ${{ this.total }}</p>
   </div>
 
   <p *ngIf="cart?.length === 0">Your Cart is empty</p>
 
-  <div *ngIf="cart?.length > 1" class="cart-button">
+  <div *ngIf="cart?.length > 0" class="cart-button">
     <div class="btn-1">
-      <a href=""><span>Purchase for gift</span></a>
+      <a href="" (click)="purchase('gift')"><span>Purchase for gift</span></a>
     </div>
     <div class="btn-1">
-      <a href=""><span>Purchase for myself</span></a>
+      <a href="" (click)="purchase('self')"><span>Purchase for myself</span></a>
     </div>
   </div>
 </div>

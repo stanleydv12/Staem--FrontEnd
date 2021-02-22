@@ -21,8 +21,10 @@ type Game {
   banner: String!
   description: String!
   genre: String!
+  hours: Int!
   id: ID!
   image: String!
+  mature: String!
   name: String!
   price: Int!
   tag: String!
@@ -71,16 +73,30 @@ type Mutation {
   deleteWishlist(input: InputWishlist!): Wishlist!
   inputCart(input: InputCart!): Cart!
   inputWishlist(input: InputWishlist!): Wishlist!
+  insertGame(input: InputGame!): OwnedGame!
   insertReview(input: InputReview!): GameReview!
   register(input: InputUser!): User!
+  savePaymentMethod(input: InputPaymentMethod!): PaymentMethod!
   updateNegativeReview(input: String!): GameReview!
   updatePositiveReview(input: String!): GameReview!
+  updateUser(input: UpdateUser!): User!
 }
 
 type OwnedGame {
   game: Game!
-  id: ID!
   user: User!
+}
+
+type PaymentMethod {
+  address: String!
+  card: String!
+  card_number: String!
+  country: String!
+  date: Time!
+  name: String!
+  phone_number: String!
+  postal_code: String!
+  userid: ID!
 }
 
 type Query {
@@ -99,6 +115,7 @@ type Query {
   getRecentReview(input: String!): [GameReview!]!
   getRecommendedRequirement(input: String!): RecommendedRequirement!
   getUserById(input: ID!): User!
+  getWishlists(input: String!): [Wishlist!]
   login(input: LoginUser!): String!
   users: [User!]!
 }
@@ -124,6 +141,7 @@ type User {
 }
 
 type Wishlist {
+  game: Game!
   gameid: ID!
   id: ID!
   userid: ID!
@@ -134,8 +152,25 @@ input InputCart {
   userid: ID!
 }
 
+input InputGame {
+  gameid: ID!
+  userid: ID!
+}
+
 input InputOwnedGame {
   gameid: ID!
+  userid: ID!
+}
+
+input InputPaymentMethod {
+  address: String!
+  card: String!
+  card_number: String!
+  country: String!
+  date: Time!
+  name: String!
+  phone_number: String!
+  postal_code: String!
   userid: ID!
 }
 
@@ -162,3 +197,16 @@ input LoginUser {
   email: String!
   password: String!
 }
+
+input UpdateUser {
+  country: String!
+  email: String!
+  id: ID!
+  image: String!
+  name: String!
+  password: String!
+  wallet: Float!
+}
+
+
+scalar Time

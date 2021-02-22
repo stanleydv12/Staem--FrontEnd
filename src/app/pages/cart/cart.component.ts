@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,8 +12,9 @@ export class CartComponent implements OnInit {
   cart: any = [];
   id: any;
   auth: any;
+  total = 0;
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private route: Router) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('jwt')) {
@@ -58,6 +60,30 @@ export class CartComponent implements OnInit {
       .subscribe(({ data }) => {
         window.location.reload();
       });
+  }
+
+  triggerModal(gameid: any): void {
+    let result = confirm('Are you sure want to delete this game?');
+    if (result === true) {
+      this.removeCart(gameid);
+    }
+  }
+
+  purchase(msg: any): void {
+    if (this.user.wallet > this.total) {
+      let result = confirm(
+        'You have enough wallet. Do you want to pay with your amount of wallet ?'
+      );
+
+      if (result === true) {
+        this.user.wallet -= this.total;
+        this.confirmGame(msg);
+        this.user.updateUser();
+        alert(this.user.wallet.toString + '$ left');
+      } else {
+        this.route.navigateByUrl('/payment/' + msg);
+      }
+    }
   }
 
   private getUser(): void {
@@ -106,7 +132,34 @@ export class CartComponent implements OnInit {
       })
       .subscribe(({ data }) => {
         this.cart = (data as any).getCartById;
+        for (let c of this.cart) {
+          this.total += c.game.price;
+        }
+        console.log(this.total);
         console.log(this.cart);
       });
+  }
+
+  private confirmGame(msg: any): void {
+    if (msg === 'gift') {
+    } else if (msg === 'self') {
+      for (let g of this.cart) {
+        this.apollo
+          .mutate({
+            mutation: gql`
+              mutation adsfd($userid: ID!, $gameid: ID!) {
+                insertGame(input: { userid: $userid, gameid: $gameid }) {
+                  game {
+                    id
+                    name
+                    genre
+                  }
+                }
+              }
+            `,
+          })
+          .subscribe(({ data }) => {});
+      }
+    }
   }
 }

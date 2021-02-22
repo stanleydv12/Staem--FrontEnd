@@ -10,6 +10,8 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { GamePageComponent } from './pages/game-page/game-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CartComponent } from './pages/cart/cart.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'wishlist',
+    component: WishlistComponent,
+  },
+  {
+    path: 'payment/:msg',
+    component: PaymentComponent,
   },
 ];
 

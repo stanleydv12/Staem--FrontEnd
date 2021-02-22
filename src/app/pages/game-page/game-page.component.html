@@ -76,13 +76,70 @@
       src="./assets/icons/f-heart.png"
       alt=""
     />
-    <img src="./assets/icons/shopping-cart.png" alt="" />
+    <img
+      src="./assets/icons/shopping-cart.png"
+      alt=""
+      (click)="addToCart(gameId, user.id)"
+    />
   </div>
 
   <hr style="width: 50%; text-align: left; margin-left: 0" />
 
   <h2>Most Helpful Review</h2>
   <div class="review-container" *ngFor="let rev of reviews">
+    <div class="review-1-container">
+      <div><img src="{{ rev.user.image }}" alt="" /></div>
+      <div>
+        <p>{{ rev.user.name }}</p>
+      </div>
+      <img
+        class="user-rating"
+        *ngIf="rev.rating === 'Positive'"
+        src="./assets/icons/positive%20.png"
+        alt=""
+      />
+      <img
+        class="user-rating"
+        *ngIf="rev.rating === 'Negative'"
+        src="./assets/icons/negative.png"
+        alt=""
+      />
+      <p *ngIf="rev.rating === 'Positive'">Recommended</p>
+      <p *ngIf="rev.rating === 'Negative'">Not Recommended</p>
+    </div>
+    <hr
+      style="
+        width: 100%;
+        text-align: left;
+        margin-left: 0;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      "
+    />
+    <p>{{ rev.description }}</p>
+    <hr style="width: 100%; text-align: left; margin-top: 1rem" />
+    <div class="thumbs">
+      <div>
+        <img
+          (click)="thumbsup(rev.id.toString())"
+          src="./assets/icons/positive%20.png"
+          alt=""
+        />
+        <p>{{ rev.positive }} people found this helpful</p>
+      </div>
+      <div>
+        <img
+          (click)="thumbsdown(rev.id.toString())"
+          src="./assets/icons/negative.png"
+          alt=""
+        />
+        <p>{{ rev.negative }} people found this not helpful</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Most Recent Review</h2>
+  <div class="review-container" *ngFor="let rev of reviews1">
     <div class="review-1-container">
       <div><img src="{{ rev.user.image }}" alt="" /></div>
       <div>

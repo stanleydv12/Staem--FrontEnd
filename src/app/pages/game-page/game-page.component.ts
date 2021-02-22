@@ -321,6 +321,30 @@ export class GamePageComponent implements OnInit {
       });
   }
 
+  addToCart(gameid: string | undefined | null, userid: any): void {
+    if (this.auth === false) {
+      alert('You must login first');
+    }
+    this.apollo
+      .mutate({
+        mutation: gql`
+          mutation asdf($gameid: ID!, $userid: ID!) {
+            inputCart(input: { gameid: $gameid, userid: $userid }) {
+              game {
+                id
+              }
+              gameid
+              userid
+            }
+          }
+        `,
+        variables: { gameid, userid },
+      })
+      .subscribe(({ data }) => {
+        alert('Success add to cart !');
+      });
+  }
+
   private getMostHelpfulReview(id: string | null): void {
     this.apollo
       .query({

@@ -13,12 +13,14 @@ export class RegisterComponent implements OnInit {
   username: string | undefined;
   email: string | undefined;
   countries: string[] = [];
+
   registerForm = this.fb.group({
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
     c_password: ['', Validators.required],
     country: ['', Validators.required],
+    check: null,
   });
 
   constructor(private fb: FormBuilder, private apollo: Apollo) {}

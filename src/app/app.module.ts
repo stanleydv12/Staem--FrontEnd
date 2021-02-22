@@ -16,6 +16,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { GamePageComponent } from './pages/game-page/game-page.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { CartComponent } from './pages/cart/cart.component';
     ImageSliderComponent,
     SearchbarComponent,
     GamePageComponent,
-    CartComponent
+    CartComponent,
+    WishlistComponent,
+    PaymentComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
