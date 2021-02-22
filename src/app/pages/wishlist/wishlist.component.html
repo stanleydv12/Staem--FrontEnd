@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h1>WISHLIST</h1>
+
+  <div *ngIf="auth">
+    <div class="game-container" *ngFor="let c of wishlist">
+      <img src="{{ c.game.image }}" alt="" />
+      <p>{{ c.game.name }}</p>
+
+      <div>
+        <p>${{ c.game.price }}</p>
+        <a href="" (click)="addToCart(c.gameId, user.id)">Add to cart</a>
+      </div>
+      <div>
+        <a href="" (click)="removeWishlist(c.gameId, user.id)">remove</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

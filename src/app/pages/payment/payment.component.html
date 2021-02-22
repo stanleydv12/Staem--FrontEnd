@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+
+<div class="title">Payment</div>
+
+<div class="container">
+  <ul>
+    <form [formGroup]="paymentForm">
+      <li>
+        <!-- <label for="">Country</label> -->
+        <select formControlName="card" id="card">
+          <option value="-Card-">-Card-</option>
+          <option value="Visa">Visa</option>
+          <option value="Master Card">Master Card</option>
+        </select>
+      </li>
+      <br />
+      <br />
+
+      <li>
+        <!-- <label for="">Email</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="text"
+          formControlName="card_number"
+          placeholder="Card Number"
+          id="card_number"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Password</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="date"
+          formControlName="date"
+          id="date"
+        />
+      </li>
+
+      <p>Billing Form</p>
+
+      <li>
+        <!-- <label for="">Password</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="text"
+          formControlName="name"
+          placeholder="Full Name"
+          id="name"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Password</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="text"
+          formControlName="address"
+          placeholder="Address"
+          id="address"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Password</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="text"
+          formControlName="postal_code"
+          placeholder="Postal Code"
+          id="postal_code"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Password</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="text"
+          formControlName="phone_number"
+          placeholder="Phone Number"
+          id="phone_number"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Country</label> -->
+        <select formControlName="country" id="country">
+          <option value="-Country-">-Country-</option>
+          <option *ngFor="let country of countries">{{ country }}</option>
+        </select>
+      </li>
+
+      <li>
+        <input type="checkbox" value="save" formControlName="check" />
+        <label>Save my payment information so checkout is easy next time</label>
+      </li>
+
+      <!-- <div class="btn btn-one"> -->
+      <input
+        type="submit"
+        value="Submit"
+        id="submitButton"
+        (click)="onSubmit()"
+        class="btn btn-one"
+      />
+      <!-- </div> -->
+    </form>
+  </ul>
+</div>
+
+<app-footer></app-footer>
