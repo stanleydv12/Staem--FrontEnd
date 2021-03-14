@@ -1,0 +1,98 @@
+.profile_container {
+  display: flex;
+  margin: 6rem;
+  padding: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 100px;
+    min-width: 100px;
+    padding: 2rem;
+  }
+  p {
+    font-family: "Space Marine Nominal";
+    color: white;
+    font-size: 30px;
+  }
+
+  .profile_detail_container {
+    margin-bottom: 2rem;
+    p {
+      font-family: "Dubai Light";
+      font-size: 20px;
+      color: white;
+    }
+  }
+
+  .friends_container,
+  .profile_comment_container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #064579;
+    width: 60%;
+    p {
+      font-family: "Space Marine Nominal";
+      font-size: 15px;
+      color: white;
+      margin-right: 3rem;
+    }
+    img {
+      width: 30px;
+      min-width: 30px;
+    }
+    button {
+      margin-right: 1rem;
+    }
+  }
+
+  .profile_owned_games {
+    background-color: #555555;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100px;
+        min-width: 100px;
+        padding: 1rem;
+      }
+      p {
+        font-family: "Dubai Light";
+        font-size: 20px;
+        color: lightgrey;
+      }
+    }
+  }
+
+  .profile_recent_activity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      width: 80%;
+      background-color: #555555;
+      div {
+        font-family: "Dubai Light";
+        font-size: 20px;
+        color: lightgrey;
+      }
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  height: 1500px;
+}

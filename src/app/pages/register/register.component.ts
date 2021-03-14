@@ -3,6 +3,8 @@ import { RecaptchaErrorParameters } from 'ng-recaptcha';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { FormBuilder, Validators } from '@angular/forms';
+import { stringify } from 'querystring';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +15,7 @@ export class RegisterComponent implements OnInit {
   username: string | undefined;
   email: string | undefined;
   countries: string[] = [];
+  otpCode: any;
 
   registerForm = this.fb.group({
     username: ['', Validators.required],
@@ -23,7 +26,11 @@ export class RegisterComponent implements OnInit {
     check: null,
   });
 
-  constructor(private fb: FormBuilder, private apollo: Apollo) {}
+  constructor(
+    private fb: FormBuilder,
+    private apollo: Apollo,
+    private router: Router
+  ) {}
 
   public resolved(captchaResponse: string): void {
     console.log(`Resolved captcha with response: ${captchaResponse}`);
@@ -56,6 +63,14 @@ export class RegisterComponent implements OnInit {
       if (password !== c_password) {
         return;
       }
+      this.sendOTP();
+      let temp = prompt('Insert OTP Code from Email : ');
+      if (parseInt(temp ?? '') !== this.otpCode) {
+        alert('failed');
+        return;
+      } else {
+        alert('success');
+      }
       this.apollo
         .mutate({
           mutation: gql`
@@ -79,7 +94,28 @@ export class RegisterComponent implements OnInit {
           `,
           variables: this.registerForm.value,
         })
-        .subscribe();
+        .subscribe(({ data }) => {
+          this.router.navigateByUrl('/login');
+        });
     }
+  }
+
+  sendOTP(): void {
+    const otp = this.randomIntFromInterval(10000, 99999);
+    this.otpCode = otp;
+    this.apollo
+      .mutate({
+        mutation: gql`
+          mutation asff($otp: Int!) {
+            sendOTP(input: $otp)
+          }
+        `,
+        variables: { otp },
+      })
+      .subscribe();
+  }
+
+  randomIntFromInterval(min: any, max: any) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 }

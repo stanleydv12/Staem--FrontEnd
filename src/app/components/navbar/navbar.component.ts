@@ -11,10 +11,14 @@ export class NavbarComponent implements OnInit {
   auth: boolean | undefined;
   id: string | undefined;
   user: any = {};
+  countLanguage: any;
+  dropdown: any;
 
   constructor(private apollo: Apollo, private router: Router) {}
 
   ngOnInit(): void {
+    this.dropdown = false;
+    this.countLanguage = 1;
     if (localStorage.getItem('jwt')) {
       const token: string | null = localStorage.getItem('jwt');
       this.apollo
@@ -65,5 +69,13 @@ export class NavbarComponent implements OnInit {
   requestLogOut(): void {
     localStorage.removeItem('jwt');
     this.router.navigateByUrl('/');
+  }
+
+  changeLanguage() {
+    if (this.countLanguage === 2) {
+      this.countLanguage = 1;
+    } else {
+      this.countLanguage = 2;
+    }
   }
 }

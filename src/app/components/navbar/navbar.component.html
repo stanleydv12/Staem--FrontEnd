@@ -1,13 +1,12 @@
 <div class="content">
   <div>
-    <ul class="topnav">
+    <ul class="topnav" *ngIf="countLanguage === 1">
       <li class="logo">
         <img src="./assets/logo.svg" alt="" class="responsive" />
       </li>
       <li><a href="/">STORE</a></li>
-      <li><a href="Library.html">COMMUNITY</a></li>
-      <li><a href="News.html">ABOUT</a></li>
-      <li><a href="About.html">SUPPORT</a></li>
+      <li><a href="/community">COMMUNITY</a></li>
+      <li><a href="/market">MARKET</a></li>
 
       <li *ngIf="auth == false"><a href="/login">LOGIN</a></li>
       <li class="user-image" *ngIf="auth">
@@ -21,11 +20,54 @@
         <p>${{ user.wallet }}</p>
       </li>
 
-      <li><a href="About.html">LANGUAGE</a></li>
+      <li (mouseenter)="dropdown = true" (mouseleave)="dropdown = false">
+        <p>LANGUAGE</p>
+        <p
+          *ngIf="dropdown"
+          (click)="changeLanguage()"
+          style="position: absolute"
+        >
+          INDONESIA
+        </p>
+      </li>
       <li *ngIf="auth"><a href="/" (click)="requestLogOut()">Log out</a></li>
 
       <li *ngIf="auth"><a href="cart">CART</a></li>
     </ul>
+
+    <ul class="topnav" *ngIf="countLanguage === 2">
+      <li class="logo">
+        <img src="./assets/logo.svg" alt="" class="responsive" />
+      </li>
+      <li><a href="/">TOKO</a></li>
+      <li><a href="/community">KOMUNITAS</a></li>
+      <li><a href="/market">PASAR</a></li>
+
+      <li *ngIf="auth == false"><a href="/login">MASUK</a></li>
+      <li class="user-image" *ngIf="auth">
+        <img src="{{ user.image }}" alt="" />
+      </li>
+      <li *ngIf="auth">
+        <a class="active" href="">{{ user.name }}</a>
+      </li>
+
+      <li *ngIf="auth">
+        <p>${{ user.wallet }}</p>
+      </li>
+
+      <li (mouseenter)="dropdown = true" (mouseleave)="dropdown = false">
+        <p>BAHASA</p>
+        <p
+          *ngIf="dropdown"
+          (click)="changeLanguage()"
+          style="position: absolute"
+        >
+          ENGLISH
+        </p>
+      </li>
+      <li *ngIf="auth"><a href="/" (click)="requestLogOut()">KELUAR</a></li>
+
+      <li *ngIf="auth"><a href="cart">KERANJANG</a></li>
+    </ul>
   </div>
-  <app-searchbar></app-searchbar>
 </div>

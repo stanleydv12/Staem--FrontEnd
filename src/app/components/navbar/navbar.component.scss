@@ -27,7 +27,6 @@
   padding: 1em 0 0 1em;
   overflow: hidden;
   background-color: $menu-bar;
-  min-width: 800px;
 }
 
 .topnav li {
@@ -40,20 +39,8 @@
   left: 0;
 }
 
-@media screen and (max-width: 400px) {
-  .topnav a {
-    font-size: 10px;
-    text-decoration: none;
-    text-align: center;
-    padding: 5px 5px;
-    display: block;
-    position: relative;
-    transition: all 0.4s ease;
-    font-family: Electrofied;
-  }
-}
-
-.topnav a {
+.topnav a,
+p {
   color: $primary-text;
   font-size: 10px;
   text-decoration: none;
@@ -64,12 +51,15 @@
   position: relative;
   transition: all 0.4s ease;
   font-family: Electrofied;
+  background-color: $menu-bar;
 }
 
-.topnav a:hover {
+.topnav a:hover,
+p:hover {
   color: #eeeeee;
 }
-.topnav a::before {
+.topnav a::before,
+p::before {
   content: "";
   transition: all 0.4s ease-in-out;
   position: absolute;
@@ -77,17 +67,19 @@
   height: 3px;
   background-color: #03dac5;
 }
-.topnav a:hover::before {
+.topnav a:hover::before,
+p:hover::before {
   bottom: 10%;
 }
 
-.topnav a.active {
+.topnav a.active,
+p.active {
   color: #03dac5;
+  cursor: pointer;
 }
 
 .logo img {
-  width: 8vw;
-  min-width: 8vw;
+  width: 100px;
 }
 
 .user-image img {
@@ -117,4 +109,5 @@
   display: flex;
   background-color: #121212;
   justify-content: space-between;
+  width: 100%;
 }

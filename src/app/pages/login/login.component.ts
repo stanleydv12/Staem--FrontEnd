@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
+  modal: any;
+  reason: any;
 
   constructor(
     private fb: FormBuilder,
@@ -22,7 +24,9 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.modal = false;
+  }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
@@ -46,11 +50,37 @@ export class LoginComponent implements OnInit {
     if (this.valid === '') {
       this.message = 'Account not Found or Credential Wrong';
       window.alert(this.message);
+    } else if (this.valid === 'Suspended') {
+      window.alert('Your account is suspended..');
+      this.modal = true;
     } else {
       window.alert('Success');
       localStorage.setItem('jwt', this.valid as any);
       this.router.navigateByUrl('home');
     }
     console.log(this.valid);
+  }
+
+  createRequest() {
+    this.apollo
+      .mutate({
+        mutation: gql`
+          mutation asdf($email: String!, $reason: String!) {
+            createUnsuspensionRequest(
+              input: { reason: $reason, user_email: $email }
+            ) {
+              reason
+              user_id
+            }
+          }
+        `,
+        variables: {
+          reason: this.reason,
+          email: this.loginForm.get('email')?.value,
+        },
+      })
+      .subscribe(({ data }) => {
+        alert('Unsuspend request sent');
+      });
   }
 }

@@ -38,11 +38,27 @@
         class="btn btn-one"
         (click)="onSubmit()"
       />
+
       <!-- </div> -->
     </form>
   </ul>
-</div>
 
-<a href="/register">Join Steam</a>
+  <a href="/register">Join Steam</a>
+
+  <div *ngIf="modal" class="modal">
+    <input
+      class="field form-input smooth-corner spread-shadow"
+      type="text"
+      placeholder="Reason"
+      [(ngModel)]="reason"
+    />
+    <input
+      type="submit"
+      value="Submit"
+      class="btn btn-one"
+      (click)="createRequest()"
+    />
+  </div>
+</div>
 
 <app-footer></app-footer>

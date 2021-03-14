@@ -1,20 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-@font-face {
-  font-family: "Space Marine Nominal";
-  src: URL("SM.TTF") format("truetype");
-}
-
-@font-face {
-  font-family: "Electrofied";
-  src: URL("electr.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Dubai Light";
-  src: URL("DUBAI-LIGHT.TTF") format("truetype");
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -22,4 +7,10 @@
 
 body {
   background-color: #07213f;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+}
+
+html {
+  min-width: 1000px;
 }

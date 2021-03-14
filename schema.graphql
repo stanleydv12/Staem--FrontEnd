@@ -3,6 +3,25 @@
 schema {
   query: Query
   mutation: Mutation
+  subscription: Subscription
+}
+
+type Avatar {
+  id: ID!
+  path: String!
+  price: Int!
+}
+
+type AvatarBorder {
+  id: ID!
+  path: String!
+  price: Int!
+}
+
+type Badge {
+  game_id: ID!
+  id: ID!
+  image: String!
 }
 
 type Cart {
@@ -11,15 +30,88 @@ type Cart {
   userid: ID!
 }
 
+type ChatSticker {
+  id: ID!
+  path: String!
+  price: Int!
+}
+
+type CommunityContent {
+  content_description: String!
+  content_path: String!
+  content_type: String!
+  id: ID!
+  negative: Int!
+  positive: Int!
+  user: User!
+  userid: ID!
+}
+
+type CommunityContentReview {
+  content: CommunityContent!
+  content_id: ID!
+  review: String!
+  user: User!
+  user_id: ID!
+}
+
+type CommunityDiscussion {
+  discussion_content: String!
+  game: Game!
+  game_id: ID!
+  id: ID!
+  user: User!
+  user_id: ID!
+}
+
+type CommunityDiscussionDetail {
+  discussion_content: String!
+  discussion_id: ID!
+  game_id: ID!
+  user: User!
+  user_id: ID!
+}
+
+type CommunityReview {
+  id: ID!
+  rating: String!
+  review_content: String!
+  user: User!
+  user_id: ID!
+}
+
+type CommunityReviewDetail {
+  review_content: String!
+  review_id: ID!
+  user: User!
+  user_id: ID!
+}
+
 type Country {
   id: ID!
   name: String!
 }
 
+type Friend {
+  friend: User!
+  friend_id: ID!
+  user: User!
+  user_id: ID!
+}
+
+type FriendRequest {
+  friend: User!
+  friend_id: ID!
+  user: User!
+  user_id: ID!
+}
+
 type Game {
   about: String!
   banner: String!
+  createdAt: Time!
   description: String!
+  discussions: [CommunityDiscussion!]!
   genre: String!
   hours: Int!
   id: ID!
@@ -34,6 +126,21 @@ type GameImage {
   gameid: ID!
   id: ID!
   image: String!
+}
+
+type GameItem {
+  game: Game!
+  game_id: ID!
+  id: ID!
+  image: String!
+  name: String!
+  transactions: [MarketTransaction!]!
+}
+
+type GamePromo {
+  amount: Int!
+  game: Game!
+  game_id: ID!
 }
 
 type GameReview {
@@ -58,6 +165,41 @@ type Game_Slider {
   name: String!
 }
 
+type MarketGameItem {
+  game_item: GameItem!
+  game_item_id: ID!
+  price: Int!
+  type: String!
+  user: User!
+  user_id: ID!
+}
+
+type MarketListing {
+  game_item: GameItem!
+  game_item_id: ID!
+  price: Int!
+  type: String!
+  user: User!
+  user_id: ID!
+}
+
+type MarketTransaction {
+  createdAt: Time!
+  game_item_id: ID!
+  price: Int!
+}
+
+type Message {
+  id: ID!
+  text: String!
+}
+
+type MiniProfileBackground {
+  id: ID!
+  path: String!
+  price: Int!
+}
+
 type MinimumRequirement {
   gameid: ID!
   graphics: String!
@@ -69,22 +211,105 @@ type MinimumRequirement {
 }
 
 type Mutation {
+  addCommunityContent(input: InputCommunityContent!): CommunityContent!
+  addCommunityContentReview(input: InputCommunityContentReview!): CommunityContentReview!
+  addCommunityDiscussionDetail(input: InputCommunityDiscussionDetail!): CommunityDiscussionDetail!
+  addCommunityReviewDetail(input: InputCommunityReviewDetail!): CommunityReviewDetail!
+  addMarketGameItem(input: InputMarketGameItem!): MarketGameItem!
+  addMarketList(input: InputMarketListing!): MarketListing!
+  addNewGame(input: InputNewGame!): Game!
+  addNewPromo(input: InputPromo!): GamePromo!
+  addProfileComment(input: InputProfileComment!): ProfileComment!
+  addReported(input: ID!): User!
+  addUserWallet(input: InputUpdateUserWallet!): User!
+  boughtGameItem(input: InputBoughtMarketGameItem!): OwnedGameItem!
+  buyItemAtPointShop(item_id: ID!, type: String!, user_id: ID!): String!
+  createFriend(input: InputFriendRequest!): Friend!
+  createFriendRequest(input: InputFriendRequest!): FriendRequest!
+  createReportRequest(input: InputRequestReport!): ReportRequest!
+  createSuspensionList(input: InputSuspensionList!): String!
+  createUnsuspensionRequest(input: InputUnsuspensionRequest!): UnsuspensionRequest!
+  declinedFriend(input: InputFriendRequest!): FriendRequest!
   deleteCartByGameId(input: InputCart!): Cart!
   deleteWishlist(input: InputWishlist!): Wishlist!
+  ignoreFriend(input: InputFriendRequest!): FriendRequest!
   inputCart(input: InputCart!): Cart!
   inputWishlist(input: InputWishlist!): Wishlist!
+  insertChat(friend_id: ID!, msg: String!): String!
   insertGame(input: InputGame!): OwnedGame!
   insertReview(input: InputReview!): GameReview!
+  reducePoint(price: Int!, user_id: ID!): User!
+  reduceUserWallet(input: InputUpdateUserWallet!): User!
   register(input: InputUser!): User!
   savePaymentMethod(input: InputPaymentMethod!): PaymentMethod!
+  sendOTP(input: Int!): Int!
+  soldGameItem(input: InputBoughtMarketGameItem!): OwnedGameItem!
+  updateAvatar(input: UpdateProfileItem!): String!
+  updateAvatarBorder(input: UpdateProfileItem!): String!
+  updateBadges(input: UpdateProfileItem!): String!
+  updateCommunityContentThumbs(input: UpdateCommunityContentThumbs!): CommunityContent!
+  updateGame(input: InputUpdateGame!): Game!
+  updateMiniProfileBackground(input: UpdateProfileItem!): String!
   updateNegativeReview(input: String!): GameReview!
   updatePositiveReview(input: String!): GameReview!
+  updateProfileBackground(input: UpdateProfileItem!): String!
+  updatePromo(input: InputPromo!): GamePromo!
+  updateTheme(input: UpdateProfileItem!): String!
   updateUser(input: UpdateUser!): User!
+  updateUserProfileDetail(input: UpdateProfileDetail!): String!
+}
+
+type OwnedAvatar {
+  item: Avatar!
+  item_id: ID!
+  user_id: ID!
+}
+
+type OwnedAvatarBorder {
+  item: AvatarBorder!
+  item_id: ID!
+  user_id: ID!
+}
+
+type OwnedBadge {
+  badge: Badge!
+  game_badge_id: ID!
+  game_id: ID!
+  user: User!
+  user_id: ID!
+}
+
+type OwnedChatSticker {
+  item: ChatSticker!
+  item_id: ID!
+  user_id: ID!
 }
 
 type OwnedGame {
   game: Game!
+  game_id: ID!
+  game_items(currentPage: Int!): [OwnedGameItem!]!
   user: User!
+  user_id: ID!
+}
+
+type OwnedGameItem {
+  game_item: GameItem!
+  game_item_id: ID!
+  user: User!
+  user_id: ID!
+}
+
+type OwnedMiniProfileBackground {
+  item: MiniProfileBackground!
+  item_id: ID!
+  user_id: ID!
+}
+
+type OwnedProfileBackground {
+  item: ProfileBackground!
+  item_id: ID!
+  user_id: ID!
 }
 
 type PaymentMethod {
@@ -99,24 +324,77 @@ type PaymentMethod {
   userid: ID!
 }
 
+type ProfileBackground {
+  id: ID!
+  path: String!
+  price: Int!
+}
+
+type ProfileComment {
+  comment: String!
+  user_id: ID!
+}
+
 type Query {
   auth(input: String!): Int!
+  checkFriend(input: InputFriendRequest!): Boolean!
   checkOwnedGame(input: InputOwnedGame!): Boolean!
+  checkOwnedGameItem(input: InputOwnedGameItem!): Boolean!
+  checkWallet(input: InputTopUpWallet!): Boolean!
   checkWishlist(input: InputWishlist!): Boolean!
   countries: [Country!]!
+  deleteGame(game_id: ID!): Game!
+  deletePromo(promo_id: ID!): GamePromo!
+  deleteReport(id: ID!): String!
+  getAllGames(paginator: Int!): [Game!]!
+  getAllPromo(paginator: Int!): [GamePromo!]!
+  getAllUsersPaginate(paginator: Int!): [User!]!
+  getAvatar: [Avatar!]!
+  getAvatarBorder: [AvatarBorder!]!
   getCartById(input: String!): [Cart!]!
+  getChatSticker: [ChatSticker!]!
+  getCommunityContent: [CommunityContent!]!
+  getCommunityContentDetail(content_id: ID!, paginator: Int!): [CommunityContentReview!]!
+  getCommunityDiscussioDetail(input: ID!): [CommunityDiscussionDetail!]!
+  getCommunityDiscussionByID(input: ProfilePaginate!): [CommunityDiscussion!]!
+  getCommunityDiscussionGame: [Game!]!
+  getCommunityReview: [CommunityReview!]!
+  getCommunityReviewByID(input: ProfilePaginate!): [CommunityReview!]!
+  getCommunityReviewDetail(paginator: Int!, review_id: ID!): [CommunityReviewDetail!]!
   getGameById(input: String!): Game!
   getGameByTag(input: String!): [Game!]!
   getGameImageById(input: String!): [GameImage!]!
+  getGameItem(input: Int!): [GameItem!]!
+  getGameItemByID(input: ID!): GameItem!
+  getGameItemByUserID(input: ID!): [OwnedGameItem!]!
   getGameVideoById(input: String!): GameVideo!
+  getGames: [Game!]!
   getImageSlider: [Game_Slider!]!
+  getMarketGameItemByID(input: ID!): [MarketGameItem!]!
+  getMarketListing(input: InputGetMarketListing): [MarketListing!]!
+  getMiniProfileBackground: [MiniProfileBackground!]!
   getMinimumRequirement(input: String!): MinimumRequirement!
   getMostHelpfulReview(input: String!): [GameReview!]!
+  getMostRecentGames: [Game!]!
+  getOwnedAvatar(id: ID!): [OwnedAvatar]!
+  getOwnedAvatarBorder(id: ID!): [OwnedAvatarBorder!]!
+  getOwnedBadges(id: ID!): [OwnedBadge!]!
+  getOwnedChatSticker(id: ID!): [OwnedChatSticker!]!
+  getOwnedGames(input: ID!): [OwnedGame!]!
+  getOwnedMiniProfile(id: ID!): [OwnedMiniProfileBackground!]!
+  getOwnedProfileBackground(id: ID!): [OwnedProfileBackground!]!
+  getPersonalizedGames: [Game!]!
+  getProfileBackground: [ProfileBackground!]!
+  getProfileComment(input: ID!): [ProfileComment!]!
   getRecentReview(input: String!): [GameReview!]!
   getRecommendedRequirement(input: String!): RecommendedRequirement!
+  getReportRequest: [ReportRequest!]!
+  getSuspensionList: [SuspensionList!]!
+  getUnsuspensionRequest: [UnsuspensionRequest!]!
   getUserById(input: ID!): User!
   getWishlists(input: String!): [Wishlist!]
   login(input: LoginUser!): String!
+  loginAdmin(input: LoginUser!): String!
   users: [User!]!
 }
 
@@ -130,14 +408,60 @@ type RecommendedRequirement {
   storage: String!
 }
 
+type ReportRequest {
+  id: ID!
+  reason: String!
+  reporter: User!
+  reporter_id: ID!
+  suspected: User!
+  suspected_id: ID!
+}
+
+type Subscription {
+  messageAdded(itemID: Int!): String!
+  privateChatAdded(userID: ID!): String!
+}
+
+type SuspensionList {
+  reason: String!
+  suspended: Boolean!
+  user: User!
+  user_id: ID!
+}
+
+type UnsuspensionRequest {
+  reason: String!
+  user: User!
+  user_id: ID!
+}
+
 type User {
+  background: String!
+  badge: String!
+  border: String!
   country: String!
   email: String!
+  friend_request: [FriendRequest!]!
+  friends: [Friend!]!
   id: ID!
   image: String!
+  level: Int!
+  mini_profile_background: String!
   name: String!
+  notification: Int!
   password: String!
+  point: Int!
+  reported: Int!
+  status: String!
+  summary: String!
+  suspended: Boolean!
+  theme: String!
   wallet: Float!
+}
+
+type WalletCode {
+  amount: Float!
+  code: String!
 }
 
 type Wishlist {
@@ -147,9 +471,48 @@ type Wishlist {
   userid: ID!
 }
 
+input InputBoughtMarketGameItem {
+  buyer_id: ID!
+  game_item_id: ID!
+  user_id: ID!
+}
+
 input InputCart {
   gameid: ID!
   userid: ID!
+}
+
+input InputCommunityContent {
+  content_description: String!
+  content_path: String!
+  content_type: String!
+  negative: Int!
+  positive: Int!
+  userid: ID!
+}
+
+input InputCommunityContentReview {
+  content_id: ID!
+  review: String!
+  user_id: ID!
+}
+
+input InputCommunityDiscussionDetail {
+  discussion_content: String!
+  discussion_id: ID!
+  game_id: ID!
+  user_id: ID!
+}
+
+input InputCommunityReviewDetail {
+  review_content: String!
+  review_id: ID!
+  user_id: ID!
+}
+
+input InputFriendRequest {
+  friend_id: ID!
+  user_id: ID!
 }
 
 input InputGame {
@@ -157,9 +520,44 @@ input InputGame {
   userid: ID!
 }
 
+input InputGetMarketListing {
+  game_item_id: ID!
+  user_id: ID!
+}
+
+input InputMarketGameItem {
+  game_item_id: ID!
+  price: Int!
+  type: String!
+  user_id: ID!
+}
+
+input InputMarketListing {
+  game_item_id: ID!
+  price: Int!
+  type: String!
+  user_id: ID!
+}
+
+input InputNewGame {
+  about: String!
+  description: String!
+  genre: String!
+  image: String!
+  mature: String!
+  name: String!
+  price: Int!
+  tag: String!
+}
+
 input InputOwnedGame {
   gameid: ID!
   userid: ID!
+}
+
+input InputOwnedGameItem {
+  game_item_id: ID!
+  user_id: ID!
 }
 
 input InputPaymentMethod {
@@ -174,11 +572,60 @@ input InputPaymentMethod {
   userid: ID!
 }
 
+input InputProfileComment {
+  comment: String!
+  user_id: ID!
+}
+
+input InputPromo {
+  amount: Int!
+  id: ID!
+}
+
+input InputRequestReport {
+  reason: String!
+  reporter_id: ID!
+  suspected_id: ID!
+}
+
 input InputReview {
   description: String!
   gameid: ID!
   rating: String!
   userid: ID!
+}
+
+input InputSuspensionList {
+  reason: String!
+  suspended: Boolean!
+  user_id: ID!
+}
+
+input InputTopUpWallet {
+  code: String
+  user_id: ID!
+}
+
+input InputUnsuspensionRequest {
+  reason: String!
+  user_email: String!
+}
+
+input InputUpdateGame {
+  about: String!
+  description: String!
+  genre: String!
+  id: ID!
+  image: String!
+  mature: String!
+  name: String!
+  price: Int!
+  tag: String!
+}
+
+input InputUpdateUserWallet {
+  user_id: ID!
+  wallet: Float!
 }
 
 input InputUser {
@@ -196,6 +643,28 @@ input InputWishlist {
 input LoginUser {
   email: String!
   password: String!
+}
+
+input ProfilePaginate {
+  offset: Int!
+  user_id: ID!
+}
+
+input UpdateCommunityContentThumbs {
+  content_id: ID!
+  negative: Int!
+  positive: Int!
+}
+
+input UpdateProfileDetail {
+  name: String!
+  summary: String!
+  user_id: ID!
+}
+
+input UpdateProfileItem {
+  path: String!
+  user_id: ID!
 }
 
 input UpdateUser {

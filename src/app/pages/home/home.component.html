@@ -1,41 +1,43 @@
 <app-navbar></app-navbar>
 
-<div class="sidenav">
-  <p for="queue">Discovery Queue</p>
-  <a href="#about">Recommendations</a>
-  <a href="#services">New Releases</a>
-  <p for="text">Browse Category</p>
-  <a href="#clients">Top Sellers</a>
-  <a href="#contact">New Releases</a>
-  <a href="#clients">Upcoming</a>
-  <a href="#contact">Specials</a>
-  <a href="#clients">Virtual Reality</a>
-  <a href="#contact">Controller Friendly</a>
-  <p for="genre">Genre</p>
-  <a href="#clients">Free to Play</a>
-  <a href="#contact">Early Access</a>
-  <a href="#clients">Action</a>
-  <a href="#contact">Adventure</a>
-  <a href="#clients">Casual</a>
-  <a href="#contact">Indie</a>
-</div>
+<div class="box">
+  <div class="sidenav">
+    <p for="queue">Discovery Queue</p>
+    <a href="#about">Recommendations</a>
+    <a href="#services">New Releases</a>
+    <p for="text">Browse Category</p>
+    <a href="#clients">Top Sellers</a>
+    <a href="#contact">New Releases</a>
+    <a href="#clients">Upcoming</a>
+    <a href="#contact">Specials</a>
+    <a href="#clients">Virtual Reality</a>
+    <a href="#contact">Controller Friendly</a>
+    <p for="genre">Genre</p>
+    <a href="#clients">Free to Play</a>
+    <a href="#contact">Early Access</a>
+    <a href="#clients">Action</a>
+    <a href="#contact">Adventure</a>
+    <a href="#clients">Casual</a>
+    <a href="#contact">Indie</a>
+  </div>
 
-<div class="container">
-  <br />
-  <br />
-  <!--  <app-searchbar></app-searchbar>-->
+  <div class="container" style="float: right; width: 80%">
+    <br />
+    <br />
+    <!--  <app-searchbar></app-searchbar>-->
 
-  <div class="center-container">
-    <a class="wishlist" href="/wishlist">Wishlist</a>
+    <div class="center-container">
+      <a class="wishlist" href="/wishlist">Wishlist</a>
 
-    <h2>Featured and Recommended Games</h2>
-    <div class="two-grid-container">
-      <div
-        *ngFor="let fgame of featuredGame"
-        routerLink="/game-page/{{ fgame.id }}"
-      >
-        <img src="{{ fgame.image }}" alt="" />
-        <p>${{ fgame.price }}</p>
+      <h2>Featured and Recommended Games</h2>
+      <div class="two-grid-container">
+        <div
+          *ngFor="let fgame of featuredGame"
+          routerLink="/game-page/{{ fgame.id }}"
+        >
+          <img src="{{ fgame.image }}" alt="" />
+          <p>${{ fgame.price }}</p>
+        </div>
       </div>
     </div>
   </div>

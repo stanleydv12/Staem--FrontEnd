@@ -15,6 +15,11 @@
   src: URL("DUBAI-LIGHT.TTF") format("truetype");
 }
 
+* {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
 html {
   background-color: $background-color;
 }
@@ -23,8 +28,8 @@ html {
   margin: 7rem 0 0 2rem;
   padding: 1rem;
   background: #eee;
-  z-index: 1;
-  position: absolute;
+  float: left;
+  width: fit-content;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -106,3 +111,17 @@ p {
     text-decoration: none;
   }
 }
+//@media screen and(max-width: 1000px) {
+//  .sidenav,
+//  .content {
+//    width: 100%;
+//    padding: 80px;
+//    height: 100%;
+//    background-color: rgba(24, 70, 97, 1);
+//  }
+//
+//  .sidenav {
+//    display: flex;
+//    justify-content: center;
+//  }
+//}

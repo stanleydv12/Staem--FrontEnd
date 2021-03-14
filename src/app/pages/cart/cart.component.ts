@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
   id: any;
   auth: any;
   total = 0;
+  displayFriend: any;
 
   constructor(private apollo: Apollo, private route: Router) {}
 
@@ -76,14 +77,28 @@ export class CartComponent implements OnInit {
       );
 
       if (result === true) {
-        this.user.wallet -= this.total;
+        this.reduceUserWallet(this.id, this.total);
         this.confirmGame(msg);
-        this.user.updateUser();
-        alert(this.user.wallet.toString + '$ left');
       } else {
         this.route.navigateByUrl('/payment/' + msg);
       }
     }
+  }
+
+  reduceUserWallet(id: any, price: any): void {
+    this.apollo
+      .mutate({
+        mutation: gql`
+          mutation asdf($user_id: ID!, $price: Float!) {
+            reduceUserWallet(input: { user_id: $user_id, wallet: $price }) {
+              name
+              wallet
+            }
+          }
+        `,
+        variables: { user_id: id, price: price },
+      })
+      .subscribe();
   }
 
   private getUser(): void {
@@ -142,6 +157,7 @@ export class CartComponent implements OnInit {
 
   private confirmGame(msg: any): void {
     if (msg === 'gift') {
+      this.displayFriend = true;
     } else if (msg === 'self') {
       for (let g of this.cart) {
         this.apollo
@@ -157,8 +173,11 @@ export class CartComponent implements OnInit {
                 }
               }
             `,
+            variables: { userid: this.id, gameid: g.gameid },
           })
-          .subscribe(({ data }) => {});
+          .subscribe(({ data }) => {
+            alert('success');
+          });
       }
     }
   }

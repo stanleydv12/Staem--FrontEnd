@@ -1,10 +1,110 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-  <div class="profile_container">
-    <div>NAME</div>
-    <div><img src="/assets/icons/user.png" alt="" /></div>
-  </div>
-</div>
+<div
+  class="container"
+  [style.background-image]="'url(' + profileUser.background + ')'"
+>
+  <div
+    *ngIf="profileUser"
+    class="profile_container"
+    [style.background-color]="profileUser.theme"
+  >
+    <p>{{ profileUser.name }} Profile</p>
+    <img src="{{ profileUser.image }}" alt="" />
+    <div class="profile_detail_container">
+      <img
+        style="width: 40px; padding: 1rem; border: 1px solid lightblue"
+        src="{{ profileUser.badge }}"
+        alt=""
+      />
+      <p>Name : {{ profileUser.name }}</p>
+      <p>Level : {{ profileUser.level }}</p>
+      <p>{{ profileUser.summary }}</p>
+      <button *ngIf="myProfile" (click)="editProfile()">Edit Profile</button>
+      <button *ngIf="!addButton && !myProfile">Add Friend</button>
+      <button *ngIf="addButton">Chat</button>
+    </div>
+    <p>Friends</p>
+    <div
+      class="friends_container"
+      *ngFor="let p of profileUser.friends"
+      (mouseover)="showMiniProfile(p)"
+      (mouseleave)="miniProfile = false"
+    >
+      <img src="{{ p.friend.image }}" alt="" />
+      <p>{{ p.friend.name }}</p>
+      <p>Level : {{ p.friend.level }}</p>
+      <p>Status : {{ p.friend.status }}</p>
+    </div>
 
-<app-footer></app-footer>
+    <p *ngIf="miniProfile">Friends Detail</p>
+    <div style="z-index: 1" class="friends_container" *ngIf="miniProfile">
+      <img src="{{ friendDetail.friend.image }}" alt="" />
+      <img src="{{ friendDetail.friend.badge }}" alt="" />
+      <p>{{ friendDetail.friend.name }}</p>
+      <p>Level : {{ friendDetail.friend.level }}</p>
+      <p>Status : {{ friendDetail.friend.status }}</p>
+    </div>
+
+    <p>Comments</p>
+    <div class="profile_comment_container" *ngFor="let p of profileComment">
+      <img src="{{ profileUser.image }}" alt="" />
+      <p>{{ p.comment }}</p>
+    </div>
+
+    <textarea
+      style="resize: none; background-color: #181818; color: #b3b3b3"
+      placeholder="Comment here"
+      cols="90"
+      rows="5"
+      [(ngModel)]="comment"
+      (ngModelChange)="(comment)"
+    ></textarea>
+
+    <button
+      (click)="addProfileComment()"
+      style="margin-top: 1rem; margin-bottom: 1rem"
+    >
+      Add Comment
+    </button>
+
+    <p *ngIf="ownedGames" style="margin-top: 1rem">Owned Games</p>
+    <div
+      style="
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      "
+    >
+      <div class="profile_owned_games" *ngFor="let o of ownedGames">
+        <div>
+          <img src="{{ o.game.image }}" alt="" />
+          <p>{{ o.game.name }}</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-bottom: 2rem">Recent Activity</p>
+    <div class="profile_recent_activity">
+      <div *ngFor="let c of profileReview">
+        <div>{{ c.review_content }}</div>
+        <div>{{ c.rating }}</div>
+      </div>
+      <div *ngFor="let c of profileDiscussion">
+        <div>{{ c.game.name }}</div>
+        <div>{{ c.discussion_content }}</div>
+      </div>
+    </div>
+    <div
+      style="display: flex; margin-top: 2rem"
+      class="profile_recent_activity_paginator"
+    >
+      <button (click)="decPaginator()"><</button>
+      <button (click)="incPaginator()">></button>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
