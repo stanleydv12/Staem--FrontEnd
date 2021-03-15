@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+
+<div class="container" *ngIf="user">
+  <p>Friend</p>
+  <div class="friend_container" *ngFor="let u of user.friends">
+    <img src="{{ u.friend.image }}" alt="" />
+    <p>{{ u.friend.name }}</p>
+    <p>{{ u.friend.status }}</p>
+    <button
+      *ngIf="u.friend.status === 'Online'"
+      [routerLink]="['/chat', u.friend.id]"
+    >
+      Chat
+    </button>
+  </div>
+</div>
+
+<app-footer></app-footer>

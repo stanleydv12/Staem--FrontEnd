@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+  p {
+    font-family: "Space Marine Nominal";
+    font-size: 25px;
+    color: lightgrey;
+  }
+  .market_item_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #064579;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 40%;
+    margin: 1rem;
+    img {
+      width: 100px;
+      min-width: 100px;
+      padding: 2rem;
+      border: 1px solid lightblue;
+      background-color: #07213f;
+    }
+    p {
+      font-family: "Dubai Light";
+      font-size: 20px;
+      color: lightgrey;
+    }
+
+    &:hover {
+      transition: 0.3s;
+      transform: scale(1.02);
+    }
+  }
+}

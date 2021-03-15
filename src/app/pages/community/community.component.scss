@@ -1,0 +1,456 @@
+.bar {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    float: left;
+    font-family: "Dubai Light";
+    font-size: 20px;
+    padding: 1rem;
+    color: lightblue;
+  }
+  li :hover {
+    color: #404040;
+    cursor: pointer;
+  }
+}
+
+h1,
+h3 {
+  color: lightgrey;
+  //margin-right: 4rem;
+  margin-left: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  font-family: "Space Marine Nominal";
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-bottom: 2rem;
+
+  .small-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 1rem;
+
+    &:hover {
+      border: 1px solid lightblue;
+    }
+    img,
+    video {
+      min-width: 400px;
+      width: 400px;
+      margin-right: 5rem;
+    }
+
+    .content {
+      padding: 2rem;
+      font-family: "Dubai Light";
+      color: lightgrey;
+    }
+    .thumbs {
+      margin-left: 5rem;
+      display: flex;
+      flex-direction: column;
+      div {
+        margin-right: 4rem;
+        font-family: "Dubai Light";
+        color: lightgrey;
+      }
+
+      img {
+        width: 50px;
+        min-width: 50px;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  .review-container {
+    padding: 2rem;
+    background-color: #064579;
+    margin-bottom: 1rem;
+
+    &:hover {
+      border: 1px solid white;
+      cursor: pointer;
+    }
+    .review-1-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .user {
+        display: flex;
+        align-items: center;
+        margin-right: 7rem;
+        p {
+          font-family: "Dubai Light";
+          color: lightgrey;
+          font-size: 15px;
+        }
+        img {
+          border: 1px solid white;
+          padding: 0.5rem;
+          margin: 1rem;
+          width: 30px;
+          min-width: 30px;
+        }
+      }
+
+      .sign {
+        display: flex;
+        align-items: center;
+        padding-left: 2rem;
+        img {
+          border: none;
+          width: 30px;
+          min-width: 30px;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+        p {
+          font-family: "Space Marine Nominal";
+          font-size: 15px;
+          color: lightgrey;
+          margin: 1rem;
+        }
+      }
+
+      .content-review {
+        font-family: "Dubai Light";
+        color: lightgrey;
+      }
+      p {
+        font-size: 20px;
+      }
+
+      .thumbs {
+        margin-left: 5rem;
+        display: flex;
+        flex-direction: column;
+        div {
+          margin-right: 4rem;
+          font-family: "Dubai Light";
+          color: lightgrey;
+        }
+
+        img {
+          width: 50px;
+          min-width: 50px;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content-detail {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .content-detail-container {
+    margin: 4rem;
+    display: flex;
+    justify-content: left;
+    background-color: #282828;
+    padding: 2rem;
+    img {
+      width: 600px;
+      min-width: 300px;
+    }
+
+    video {
+      width: 600px;
+      min-width: 300px;
+    }
+
+    .user-detail {
+      display: flex;
+      align-items: center;
+      background-color: #064579;
+      padding: 1rem;
+      img {
+        padding: 0.5rem;
+        border: 1px solid white;
+        width: 30px;
+        min-width: 30px;
+      }
+      p {
+        padding: 0.5rem;
+        font-family: "Dubai Light";
+        color: white;
+      }
+    }
+
+    .content-comment {
+      height: 425px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      .content-comment-container {
+        padding-left: 3rem;
+      }
+
+      .content-comment-user {
+        padding-top: 3rem;
+        padding-left: 3rem;
+        display: flex;
+        flex-direction: row;
+        img {
+          padding: 0.5rem;
+          border: 1px solid white;
+          width: 30px;
+          min-width: 30px;
+        }
+        p {
+          padding: 0.5rem;
+          font-family: "Dubai Light";
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.content-review-container {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+
+  .content-review-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+    padding: 2rem;
+    background-color: #07213f;
+    .content-review-content {
+      font-family: "Dubai Light";
+      font-size: 20px;
+      color: lightgrey;
+      padding: 3rem;
+    }
+    .content-review-user {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 1rem;
+      img {
+        width: 30px;
+        min-width: 30px;
+        padding: 0.5rem;
+        border: 1px solid white;
+      }
+      p {
+        margin: 2rem;
+        font-size: 15px;
+        font-family: "Dubai Light";
+        color: lightgrey;
+      }
+    }
+
+    .sign {
+      display: flex;
+      width: 70%;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #064579;
+      padding-left: 2rem;
+      img {
+        border: none;
+        width: 60px;
+        min-width: 60px;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      p {
+        font-family: "Space Marine Nominal";
+        font-size: 25px;
+        color: lightgrey;
+        margin: 1rem;
+      }
+    }
+  }
+
+  .content-review-comment {
+    padding-right: 20rem;
+    padding-left: 20rem;
+    background-color: #282828;
+    border: 1px solid lightgrey;
+    .content-review-user {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      padding-left: 3rem;
+      img {
+        width: 30px;
+        padding: 0.5rem;
+        border: 1px solid white;
+      }
+      p {
+        font-family: "Dubai Light";
+        font-size: 20px;
+        color: lightgrey;
+      }
+    }
+
+    p {
+      padding: 3rem;
+      font-family: "Dubai Light";
+      font-size: 20px;
+      color: lightgrey;
+    }
+  }
+
+  .content-insert-review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+  }
+}
+
+.close {
+  position: fixed;
+  right: 20px;
+  z-index: 2;
+  width: 20px;
+  margin: 20px;
+}
+
+.content-discussion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20rem;
+  margin-left: 20rem;
+  margin-bottom: 0.5rem;
+  padding: 2rem;
+  background-color: #064579;
+  .content-discussion-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+      border: 1px solid lightblue;
+      width: 200px;
+      min-width: 100px;
+      margin-top: 0.3rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-family: "Space Marine Nominal";
+      font-size: 15px;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .content-discussion-game-review {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #07213f;
+    width: 700px;
+    &:hover {
+      border: 1px solid lightblue;
+    }
+
+    p {
+      font-family: "Dubai Light";
+      font-size: 15px;
+      color: white;
+    }
+  }
+}
+
+.content-discussion-detail {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  .content-discussion-game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #064579;
+    margin-top: 5rem;
+    padding: 2rem;
+    img {
+      width: 300px;
+      min-width: 300px;
+    }
+    p {
+      padding: 1rem;
+      font-family: "Space Marine Nominal";
+      font-size: 20px;
+      color: lightgrey;
+    }
+  }
+  .content-discussion-comment-user,
+  .content-discussion-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    padding-right: 20rem;
+    padding-left: 20rem;
+    div {
+      display: flex;
+      align-items: center;
+    }
+    img {
+      width: 30px;
+      min-width: 30px;
+      padding: 0.5rem;
+      border: 1px solid white;
+      margin: 1rem;
+    }
+    p {
+      font-family: "Dubai Light";
+      font-size: 15px;
+      color: lightgrey;
+    }
+    .content-discussion-detail-comment {
+      padding-left: 3rem;
+    }
+  }
+}

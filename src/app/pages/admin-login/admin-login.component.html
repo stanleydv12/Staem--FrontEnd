@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<div class="title">Admin Login</div>
+<div class="container">
+  <ul>
+    <form [formGroup]="loginForm">
+      <li>
+        <!-- <label for="">Email</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="text"
+          formControlName="email"
+          placeholder="Email"
+          id="email"
+        />
+      </li>
+
+      <li>
+        <!-- <label for="">Password</label> -->
+        <input
+          class="field form-input smooth-corner spread-shadow"
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          id="password"
+        />
+      </li>
+
+      <!-- <div class="btn btn-one"> -->
+      <input
+        type="submit"
+        value="Submit"
+        id="submitButton"
+        class="btn btn-one"
+        (click)="onSubmit()"
+      />
+
+      <!-- </div> -->
+    </form>
+  </ul>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  padding: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-family: "Space Marine Nominal";
+    font-size: 40px;
+    color: lightgrey;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+  .container_item {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1rem;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #282828;
+      img,
+      video {
+        width: 100px;
+        padding: 1rem;
+      }
+      p {
+        font-family: "Dubai Light";
+        font-size: 15px;
+        color: lightgrey;
+      }
+
+      &:hover {
+        border: 1px solid white;
+        transform: scale(1.02);
+        transition: ease-in 0.2s;
+      }
+    }
+  }
+}

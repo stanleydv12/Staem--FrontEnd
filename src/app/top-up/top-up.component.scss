@@ -1,0 +1,14 @@
+div {
+  display: flex;
+  margin: 15rem;
+  padding: 10rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-family: "Space Marine Nominal";
+    font-size: 30px;
+    color: lightgrey;
+    padding: 4rem;
+  }
+}

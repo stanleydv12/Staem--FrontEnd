@@ -1,0 +1,41 @@
+<div class="container">
+  <p>Manage Game Promo</p>
+  <div class="container_grid">
+    <div class="container_game" *ngFor="let g of allGames">
+      <img src="{{ g.game.image }}" alt="" />
+      <p>{{ g.game.name }} discount {{ g.amount }}%</p>
+    </div>
+  </div>
+
+  <div class="container_button" style="margin-bottom: 3rem">
+    <button (click)="prevPage()"><</button>
+    <button (click)="nextPage()">></button>
+  </div>
+
+  <form [formGroup]="insertGameForm">
+    <li>
+      <select formControlName="game_id" id="card">
+        <option>Choose Game to be update or deleted</option>
+        <option value="{{ g.id }}" *ngFor="let g of promoGames">
+          {{ g.name }}
+        </option>
+      </select>
+    </li>
+    <br />
+    <br />
+
+    <li>
+      <!-- <label for="">Email</label> -->
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="amount"
+        placeholder="amount"
+      />
+    </li>
+
+    <input type="submit" value="Add Promo" (click)="addGame()" />
+    <input type="submit" value="Update Promo" (click)="updateGame()" />
+    <input type="submit" value="Delete Promo" (click)="deleteGame()" />
+  </form>
+</div>

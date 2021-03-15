@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="container" *ngIf="loggedUser">
+  <p>Friend</p>
+  <div class="friend_container" *ngFor="let u of loggedUser.friends">
+    <img src="{{ u.friend.image }}" alt="" />
+    <p>{{ u.friend.name }}</p>
+    <p>{{ u.friend.status }}</p>
+    <button (click)="reportFriend(u)">Report</button>
+    <button *ngIf="u.friend.status === 'Online'">Chat</button>
+  </div>
+  <br />
+  <br />
+
+  <p>Friend Request</p>
+  <div class="friend_container" *ngFor="let u of loggedUser.friend_request">
+    <img src="{{ u.friend.image }}" alt="" />
+    <p>{{ u.friend.name }}</p>
+    <button (click)="addFriend(u)">Add</button>
+    <button (click)="declineFriend(u)">Decline</button>
+    <button (click)="ignoreFriend(u)">Ignore</button>
+  </div>
+</div>
+
+<app-footer></app-footer>

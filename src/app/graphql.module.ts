@@ -4,8 +4,9 @@ import { ApolloClientOptions, InMemoryCache, split } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
+import { environment } from '../environments/environment';
 
-const uri = 'http://localhost:8080/query'; // <-- add the URL of the GraphQL server here
+const uri = environment.endpoint; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const http = httpLink.create({
     uri: uri,
@@ -14,7 +15,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
 
   // Create a WebSocket link:
   const ws = new WebSocketLink({
-    uri: `ws://localhost:8080/query`,
+    uri: environment.websocket,
     options: {
       reconnect: true,
     },

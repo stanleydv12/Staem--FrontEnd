@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <p>Inventory Page</p>
+  <div style="width: 80%">
+    <div class="container_game" *ngFor="let g of ownedGame">
+      <img src="{{ g.game.image }}" alt="" />
+      <p>{{ g.game.name }}</p>
+
+      <div
+        class="container_game_item"
+        *ngFor="let gi of g.game_items"
+        (click)="setModal(gi)"
+      >
+        <img src="{{ gi.game_item.image }}" alt="" />
+      </div>
+      <div class="market_item_paginator">
+        <button (click)="prevItem()"><</button>
+        <button (click)="nextItem()">></button>
+      </div>
+    </div>
+
+    <div *ngIf="modal" class="container_modal">
+      <img src="{{ selectedItem.game_item.image }}" alt="" />
+      <p>{{ selectedItem.game_item.name }}</p>
+      <p>{{ selectedItem.game_item.game.name }}</p>
+      <button (click)="modal = false">Close</button>
+    </div>
+
+    <div *ngIf="modal" style="width: 80%; padding-right: 2rem">
+      <div class="container_market_item">
+        <div>
+          <p>Bid</p>
+          <div class="container_market_item_detail">
+            <div *ngFor="let m of marketItems">
+              <p *ngIf="m.type === 'bid'">${{ m.price }}</p>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center" *ngIf="auth">
+            <button style="padding: 0.5rem" (click)="buyItem()">Buy</button>
+          </div>
+        </div>
+
+        <div>
+          <p>Offer</p>
+          <div class="container_market_item_detail">
+            <div *ngFor="let m of marketItems">
+              <p *ngIf="m.type === 'offer'">${{ m.price }}</p>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center" *ngIf="auth">
+            <button
+              style="padding: 0.5rem"
+              (click)="checkOwnedItem(loggedUser.id, selectedItemDetail.id)"
+            >
+              Sell
+            </button>
+          </div>
+        </div>
+
+        <canvas
+          baseChart
+          chartType="line"
+          [datasets]="chartData"
+          [labels]="labelData"
+        >
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

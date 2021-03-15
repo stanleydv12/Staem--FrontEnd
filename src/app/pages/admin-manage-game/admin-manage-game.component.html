@@ -1,0 +1,115 @@
+<div class="container">
+  <p>Manage Game</p>
+  <div class="container_grid">
+    <div class="container_game" *ngFor="let g of allGames">
+      <img src="{{ g.image }}" alt="" />
+      <p>{{ g.name }}</p>
+    </div>
+  </div>
+
+  <div class="container_button" style="margin-bottom: 3rem">
+    <button (click)="prevPage()"><</button>
+    <button (click)="nextPage()">></button>
+  </div>
+
+  <form [formGroup]="insertGameForm">
+    <li>
+      <select formControlName="game_id" id="card">
+        <option>Choose Game to be update or deleted</option>
+        <option value="{{ g.id }}" *ngFor="let g of allGames">
+          {{ g.name }}
+        </option>
+      </select>
+    </li>
+    <br />
+    <br />
+
+    <li>
+      <!-- <label for="">Email</label> -->
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="name"
+        placeholder="Name"
+      />
+    </li>
+
+    <li>
+      <!-- <label for="">Password</label> -->
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="genre"
+        placeholder="Genre"
+      />
+    </li>
+
+    <li>
+      <!-- <label for="">Password</label> -->
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="price"
+        placeholder="Price"
+        id="name"
+      />
+    </li>
+
+    <li>
+      <!-- <label for="">Password</label> -->
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="description"
+        placeholder="Description"
+        id="address"
+      />
+    </li>
+
+    <li>
+      <!-- <label for="">Password</label> -->
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="tag"
+        placeholder="Tag"
+      />
+    </li>
+
+    <li>
+      <!-- <label for="">Password</label> -->
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="file"
+        formControlName="image"
+        placeholder="Image"
+      />
+    </li>
+
+    <li>
+      <!-- <label for="">Password</label> -->
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="about"
+        placeholder="About"
+      />
+    </li>
+
+    <li>
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="checkbox"
+        formControlName="mature"
+        placeholder="mature"
+      />
+      <label style="font-family: 'Dubai Light'; color: white"
+        >Mature Content</label
+      ><br />
+    </li>
+
+    <input type="submit" value="Add Game" (click)="addGame()" />
+    <input type="submit" value="Update Game" (click)="updateGame()" />
+    <input type="submit" value="Delete Game" (click)="deleteGame()" />
+  </form>
+</div>

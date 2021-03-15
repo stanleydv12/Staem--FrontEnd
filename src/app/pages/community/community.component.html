@@ -1,0 +1,319 @@
+<img
+  *ngIf="
+    contentDetail === true ||
+    contentReview === true ||
+    contentDiscussion === true
+  "
+  class="close"
+  src="./assets/icons/close.png"
+  alt=""
+  (click)="
+    contentDetail = false; contentReview = false; contentDiscussion = false
+  "
+/>
+
+<div class="content-detail" *ngIf="contentDetail">
+  <div class="content-detail-container">
+    <div>
+      <img
+        *ngIf="chosenCommunityContent.content_type === 'img'"
+        src="{{ chosenCommunityContent.content_path }}"
+        alt=""
+      />
+      <video
+        autoplay
+        muted
+        *ngIf="chosenCommunityContent.content_type === 'vid'"
+      >
+        <source src="{{ chosenCommunityContent.content_path }}" />
+      </video>
+
+      <div class="user-detail">
+        <div><img src="{{ chosenCommunityContent.user.image }}" alt="" /></div>
+        <div>
+          <p>{{ chosenCommunityContent.user.name }}</p>
+        </div>
+        <div style="padding-left: 3rem">
+          <p>{{ chosenCommunityContent.content_description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-comment">
+      <div class="content-comment-container">
+        <div>
+          <textarea
+            style="resize: none; background-color: #181818; color: #b3b3b3"
+            placeholder="Comment here"
+            cols="90"
+            rows="5"
+            [(ngModel)]="comment"
+            (ngModelChange)="(comment)"
+          ></textarea>
+        </div>
+        <button (click)="addCommunityContentDetail()">Submit</button>
+      </div>
+
+      <div class="content-comment-user" *ngFor="let c of chosenContentDetail">
+        <div><img src="{{ c.user.image }}" alt="" /></div>
+        <div>
+          <p>{{ c.user.name }}</p>
+        </div>
+        <div>
+          <p>{{ c.review }}</p>
+        </div>
+      </div>
+
+      <div>
+        <button style="padding: 1rem; z-index: 1" (click)="prevContent()">
+          <
+        </button>
+        <button style="padding: 1rem; z-index: 1" (click)="nextContent()">
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-review-container" *ngIf="contentReview">
+  <div
+    class="content-review-detail"
+    (click)="getCommunityReviewDetail(chosenReview.id)"
+  >
+    <div class="sign">
+      <div class="content-review-user">
+        <div><img src="{{ chosenReview.user.image }}" alt="" /></div>
+        <div>
+          <p>{{ chosenReview.user.name }}</p>
+        </div>
+      </div>
+
+      <div style="display: flex; padding-right: 2rem">
+        <img
+          class="user-rating"
+          src="./assets/icons/positive%20.png"
+          alt=""
+          *ngIf="chosenReview.rating === 'recommended'"
+        />
+        <img
+          *ngIf="chosenReview.rating === 'not recommended'"
+          class="user-rating"
+          src="./assets/icons/negative.png"
+          alt=""
+        />
+        <p *ngIf="chosenReview.rating === 'recommended'">Recommended</p>
+        <p *ngIf="chosenReview.rating === 'not recommended'">Not Recommended</p>
+      </div>
+    </div>
+    <div class="content-review-content">
+      {{ chosenReview.review_content }}
+    </div>
+  </div>
+
+  <div class="content-review-comment" *ngFor="let c of chosenReviewDetail">
+    <div class="content-review-user">
+      <div><img src="{{ c.user.image }}" alt="" /></div>
+      <div>
+        <p>{{ c.user.name }}</p>
+      </div>
+    </div>
+
+    <hr style="padding-right: 4rem; padding-left: 4rem" />
+
+    <div>
+      <p>
+        {{ c.review_content }}
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <button style="padding: 1rem; z-index: 1" (click)="prevReview()"><</button>
+    <button style="padding: 1rem; z-index: 1" (click)="nextReview()">></button>
+  </div>
+
+  <div class="content-insert-review">
+    <textarea
+      style="resize: none; background-color: #181818; color: #b3b3b3"
+      placeholder="Comment here"
+      cols="90"
+      rows="5"
+      [(ngModel)]="comment"
+      (ngModelChange)="(comment)"
+    ></textarea>
+    <button (click)="addCommunityReviewDetail()">Submit</button>
+  </div>
+</div>
+
+<div *ngIf="contentDiscussion">
+  <div class="content-discussion-detail">
+    <div class="content-discussion-game">
+      <img src="{{ chosenDiscussion.game.image }}" alt="" />
+      <p>{{ chosenDiscussion.game.name }}</p>
+    </div>
+    <div class="content-discussion-user" style="background-color: #064579">
+      <div>
+        <img src="{{ chosenDiscussion.user.image }}" alt="" />
+        <p>{{ chosenDiscussion.user.name }}</p>
+      </div>
+      <p class="content-discussion-detail-comment">
+        {{ chosenDiscussion.discussion_content }}
+      </p>
+    </div>
+    <hr />
+    <div
+      class="content-discussion-comment-user"
+      style="background-color: #555555"
+      *ngFor="let c of chosenDiscussionDetail"
+    >
+      <div>
+        <img src="{{ c.user.image }}" alt="" />
+        <p>{{ c.user.name }}</p>
+      </div>
+      <p class="content-discussion-detail-comment">
+        {{ c.discussion_content }}
+      </p>
+    </div>
+
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        margin-left: 30rem;
+        margin-right: 30rem;
+      "
+    >
+      <textarea
+        style="resize: none; background-color: #181818; color: #b3b3b3"
+        placeholder="Comment here"
+        cols="90"
+        rows="5"
+        [(ngModel)]="comment"
+        (ngModelChange)="(comment)"
+      ></textarea>
+      <button (click)="addCommunityDiscussionDetail()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<app-navbar></app-navbar>
+
+<h1>Community Activity</h1>
+<h3>Community and official content for all games and software on Steam</h3>
+
+<div class="container">
+  <div class="bar">
+    <ul>
+      <li><a (click)="setImgVideos()">Image & Videos</a></li>
+      <li><a (click)="setReviews()">Reviews</a></li>
+      <li><a (click)="setDisc()">Discussion</a></li>
+    </ul>
+  </div>
+
+  <hr />
+  <br />
+
+  <div *ngIf="imgvideos === true">
+    <div class="small-container" *ngFor="let c of communityContent">
+      <img
+        (click)="getCommunityContentDetail(c.id)"
+        *ngIf="c.content_type === 'img'"
+        src="{{ c.content_path }}"
+        alt=""
+      />
+      <video
+        (click)="getCommunityContentDetail(c.id)"
+        autoplay
+        muted
+        *ngIf="c.content_type === 'vid'"
+      >
+        <source src="{{ c.content_path }}" />
+      </video>
+      <div class="content">
+        {{ c.content_description }}
+      </div>
+
+      <div class="thumbs">
+        <div>
+          <img
+            (click)="voteUpContent(c)"
+            src="./assets/icons/positive%20.png"
+            alt=""
+          />
+          <p>{{ c.positive }} people found this helpful</p>
+        </div>
+        <div>
+          <img
+            (click)="voteDownContent(c)"
+            src="./assets/icons/negative.png"
+            alt=""
+          />
+          <p>{{ c.negative }} people found this not helpful</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="reviews === true">
+    <div
+      class="small-container-review"
+      *ngFor="let c of communityReview"
+      (click)="getCommunityReviewDetail(c)"
+    >
+      <div class="review-container">
+        <div class="review-1-container">
+          <div class="user">
+            <div>
+              <img src="{{ c.user.image }}" alt="" />
+            </div>
+            <div>
+              <p>{{ c.user.name }}</p>
+            </div>
+          </div>
+
+          <div class="content-review">
+            {{ c.review_content }}
+          </div>
+          <div class="sign">
+            <img
+              class="user-rating"
+              src="./assets/icons/positive%20.png"
+              alt=""
+              *ngIf="c.rating === 'recommended'"
+            />
+            <img
+              class="user-rating"
+              src="./assets/icons/negative.png"
+              alt=""
+              *ngIf="c.rating === 'not recommended'"
+            />
+            <p *ngIf="c.rating === 'recommended'">Recommended</p>
+            <p *ngIf="c.rating === 'not recommended'">Not Recommended</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="disc">
+    <div class="content-discussion" *ngFor="let c of communityDiscussion">
+      <div class="content-discussion-game">
+        <p>{{ c.name }}</p>
+        <img src="{{ c.image }}" alt="" />
+      </div>
+
+      <div
+        class="content-discussion-game-review"
+        *ngFor="let review of c.discussions"
+        (click)="getCommunityDiscussionComment(review)"
+      >
+        <p>{{ review.discussion_content }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

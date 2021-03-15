@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <p>Points : {{ loggedUser.point }}</p>
+  <p>Avatar</p>
+  <div class="container_item">
+    <div *ngFor="let i of avatars" (click)="buyAvatar(i, 'avatar')">
+      <img src="{{ i.path }}" alt="" />
+      <p>{{ i.price }}</p>
+    </div>
+  </div>
+
+  <p>Avatar Border</p>
+  <div class="container_item">
+    <div *ngFor="let i of avatarBorders" (click)="buyAvatarBorder(i, 'border')">
+      <img src="{{ i.path }}" alt="" />
+      <p>{{ i.price }}</p>
+    </div>
+  </div>
+
+  <p>Chat Sticker</p>
+  <div class="container_item">
+    <div *ngFor="let i of chatStickers" (click)="buyChatSticker(i, 'sticker')">
+      <img src="{{ i.path }}" alt="" />
+      <p>{{ i.price }}</p>
+    </div>
+  </div>
+
+  <p>Mini Profile Background</p>
+  <div class="container_item">
+    <div
+      *ngFor="let i of miniProfileBackgrounds"
+      (click)="buyMiniProfile(i, 'mini-background')"
+    >
+      <video autoplay muted loop><source src="{{ i.path }}" /></video>
+      <p>{{ i.price }}</p>
+    </div>
+  </div>
+
+  <p>Profile Background</p>
+  <div class="container_item">
+    <div
+      *ngFor="let i of profileBackgrounds"
+      (click)="buyProfile(i, 'profile-background')"
+    >
+      <video autoplay muted loop>
+        <source src="{{ i.path }}" />
+      </video>
+      <p>{{ i.price }}</p>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,108 @@
+.container {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-family: "Space Marine Nominal";
+    font-size: 40px;
+    color: lightgrey;
+  }
+  .container_game {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #064579;
+    width: 90%;
+    margin: 1rem 0rem 1rem 0rem;
+    img {
+      width: 200px;
+      padding: 1rem;
+    }
+    p {
+      font-family: "Space Marine Nominal";
+      font-size: 25px;
+      color: lightgrey;
+    }
+    .container_game_item {
+      padding: 0.5rem;
+      display: grid;
+      grid-template-columns: repeat(5, 0.1fr);
+      justify-content: center;
+      align-items: center;
+      background-color: #282828;
+      img {
+        width: 20px;
+        padding: 0.1rem;
+      }
+      p {
+        font-family: "Dubai Light";
+        font-size: 15px;
+        color: lightgrey;
+      }
+    }
+  }
+  .container_modal {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282828;
+    width: 90%;
+    img {
+      width: 100px;
+      padding: 0.1rem;
+    }
+    p {
+      font-family: "Dubai Light";
+      font-size: 15px;
+      color: lightgrey;
+    }
+  }
+
+  .container_market_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    margin-top: 2rem;
+    img {
+      width: 150px;
+      min-width: 150px;
+      padding: 1rem;
+      background-color: #282828;
+      border: 1px solid lightblue;
+    }
+    p {
+      font-family: "Space Marine Nominal";
+      font-size: 25px;
+      color: white;
+      text-align: center;
+    }
+
+    .container_market_item_detail {
+      background-color: #07213f;
+      padding: 2rem;
+      margin: 2rem;
+      height: 100px;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-y: scroll;
+
+      div {
+        p {
+          padding: 0.5rem;
+          font-family: "Dubai Light";
+          font-size: 15px;
+          color: lightgrey;
+        }
+      }
+    }
+  }
+}

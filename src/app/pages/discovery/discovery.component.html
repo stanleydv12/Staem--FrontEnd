@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div>
+  <p tyle="margin-top: 1rem">Personalized Games</p>
+  <div
+    style="
+      display: grid;
+      grid-template-columns: repeat(2, 0.5fr);
+      grid-gap: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    "
+  >
+    <div class="profile_owned_games" *ngFor="let o of personalizedGames">
+      <div>
+        <img src="{{ o.image }}" alt="" />
+        <p>{{ o.name }}</p>
+      </div>
+    </div>
+  </div>
+
+  <p tyle="margin-top: 1rem">New Games</p>
+  <div
+    style="
+      display: grid;
+      grid-template-columns: repeat(2, 0.5fr);
+      grid-gap: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    "
+  >
+    <div class="profile_owned_games" *ngFor="let o of recentGames">
+      <div>
+        <img src="{{ o.image }}" alt="" />
+        <p>{{ o.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

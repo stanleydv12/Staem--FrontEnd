@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  p {
+    font-family: "Space Marine Nominal";
+    font-size: 30px;
+    color: white;
+  }
+  .container_grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    .container_user {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 60px;
+        padding: 1rem;
+      }
+      p {
+        font-family: "Dubai Light";
+        font-size: 20px;
+        color: lightgrey;
+      }
+    }
+
+    .container_report {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #064579;
+      padding: 1rem;
+      p {
+        font-family: "Dubai Light";
+        font-size: 20px;
+        color: white;
+      }
+    }
+
+    .container_button {
+      display: flex;
+    }
+  }
+
+  .container_request {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #064579;
+    padding: 1rem;
+    p {
+      font-family: "Dubai Light";
+      font-size: 20px;
+      color: white;
+    }
+  }
+}

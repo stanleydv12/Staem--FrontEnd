@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 5rem 3rem 3rem;
+  background-color: #064579;
+  .container_selected_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    img {
+      width: 150px;
+      min-width: 150px;
+      padding: 1rem;
+      background-color: #282828;
+      border: 1px solid lightblue;
+    }
+    p {
+      font-family: "Space Marine Nominal";
+      font-size: 25px;
+      color: white;
+    }
+  }
+}
+
+.container_market_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
+  margin-top: 2rem;
+  img {
+    width: 150px;
+    min-width: 150px;
+    padding: 1rem;
+    background-color: #282828;
+    border: 1px solid lightblue;
+  }
+  p {
+    font-family: "Space Marine Nominal";
+    font-size: 25px;
+    color: white;
+    text-align: center;
+  }
+
+  .container_market_item_detail {
+    background-color: #07213f;
+    padding: 2rem;
+    margin: 2rem;
+    height: 100px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+
+    div {
+      p {
+        padding: 0.5rem;
+        font-family: "Dubai Light";
+        font-size: 15px;
+        color: lightgrey;
+      }
+    }
+  }
+}
+
+.container_listing {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    padding: 1rem;
+    font-family: "Space Marine Nominal";
+    font-size: 20px;
+    color: lightgrey;
+  }
+  div {
+    background-color: #064579;
+    padding: 1rem;
+    p {
+      font-family: "Dubai Light";
+      font-size: 15px;
+      color: lightgrey;
+    }
+  }
+}

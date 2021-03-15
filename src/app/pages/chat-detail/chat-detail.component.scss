@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  margin: 0 auto;
+  width: 50%;
+  p {
+    font-family: "Dubai Light";
+    font-size: 20px;
+    color: white;
+    padding: 0.5rem;
+    background-color: #064579;
+  }
+}

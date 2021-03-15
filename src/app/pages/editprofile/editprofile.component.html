@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div
+    class="container_user"
+    *ngIf="user"
+    [style.background-image]="'url(' + user.background + ')'"
+  >
+    <p>Name : {{ user.name }}</p>
+    <img
+      src="{{ user.image }}"
+      [style.background-image]="'url(' + user.border + ')'"
+      alt=""
+    />
+    <p>Summary : {{ user.summary }}</p>
+  </div>
+
+  <form [formGroup]="insertGameForm">
+    <li>
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="name"
+        placeholder="Name"
+      />
+    </li>
+
+    <li>
+      <input
+        class="field form-input smooth-corner spread-shadow"
+        type="text"
+        formControlName="summary"
+        placeholder="Summary"
+      />
+    </li>
+
+    <input
+      type="submit"
+      value="Udpate Profile Detail"
+      (click)="udpateProfileDetail()"
+    />
+  </form>
+
+  <p>Owned Avatar Border</p>
+  <div class="container_item">
+    <div *ngFor="let a of ownedAvatar" (click)="updateAvatar(a.item.path)">
+      <img src="{{ a.item.path }}" alt="" />
+    </div>
+  </div>
+
+  <p>Owned Avatar</p>
+  <div class="container_item">
+    <div
+      *ngFor="let a of ownedAvatarBorder"
+      (click)="updateAvatarBorder(a.item.path)"
+    >
+      <img src="{{ a.item.path }}" alt="" />
+    </div>
+  </div>
+
+  <p>Owned Profile Background</p>
+  <video src="{{ user.background }}" autoplay loop>
+    <source src="{{ user.background }}" />
+  </video>
+  <div class="container_item">
+    <div
+      *ngFor="let a of ownedProfileBackground"
+      (click)="updateProfileBackground(a.item.path)"
+    >
+      <video src="{{ a.item.path }}" autoplay loop muted>
+        <source src="{{ a.item.path }}" />
+      </video>
+    </div>
+  </div>
+
+  <p>Owned Mini Profile Background</p>
+  <video src="{{ user.mini_profile_background }}" autoplay loop>
+    <source src="{{ user.mini_profile_background }}" />
+  </video>
+  <div class="container_item">
+    <div
+      *ngFor="let a of ownedMiniProfile"
+      (click)="updateMiniProfile(a.item.path)"
+    >
+      <video src="{{ a.item.path }}" autoplay loop muted>
+        <source src="{{ a.item.path }}" />
+      </video>
+    </div>
+  </div>
+
+  <p>Owned Theme</p>
+  <div
+    [style.background-color]="user.theme"
+    style="height: 200px; width: 300px"
+  ></div>
+  <div class="container_item">
+    <div (click)="updateTheme('#555555')" style="background-color: #555555">
+      #555555
+    </div>
+    <div (click)="updateTheme('#03dac5')" style="background-color: #03dac5">
+      #03dac5
+    </div>
+    <div (click)="updateTheme('#2196f3')" style="background-color: #2196f3">
+      #2196f3
+    </div>
+    <div (click)="updateTheme('#bbbbbb')" style="background-color: #bbbbbb">
+      #bbbbbb
+    </div>
+  </div>
+
+  <p>Owned Badge</p>
+  <img src="{{ user.badge }}" alt="" />
+  <div class="container_item">
+    <div *ngFor="let a of ownedBadges" (click)="updateBadge(a.badge.image)">
+      <img src="{{ a.badge.image }}" alt="" />
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

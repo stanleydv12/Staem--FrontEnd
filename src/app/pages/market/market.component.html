@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+
+<div class="container" *ngIf="gameItems">
+  <p>Market</p>
+  <div
+    class="market_item_container"
+    *ngFor="let c of gameItems"
+    (click)="goToMarketDetail(c)"
+  >
+    <img src="{{ c.image }}" alt="" />
+    <p>{{ c.name }} - {{ c.game.name }}</p>
+  </div>
+  <div class="market_item_paginator">
+    <button (click)="prevItem()"><</button>
+    <button (click)="nextItem()">></button>
+  </div>
+</div>
+
+<app-footer></app-footer>

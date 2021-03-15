@@ -1,0 +1,33 @@
+<div class="container">
+  <p>Manage User</p>
+  <div class="container_grid">
+    <div class="container_user" *ngFor="let u of allUsers">
+      <img src="{{ u.image }}" alt="" />
+      <p>{{ u.name }}</p>
+    </div>
+  </div>
+
+  <div class="container_button" style="margin-bottom: 3rem">
+    <button (click)="prevPage()"><</button>
+    <button (click)="nextPage()">></button>
+  </div>
+
+  <p style="margin-bottom: 2rem; margin-top: 2rem">Report List</p>
+  <div class="container_grid">
+    <div class="container_report" *ngFor="let r of reportRequest">
+      <p>Reporter : {{ r.reporter.name }}</p>
+      <p>Suspected : {{ r.suspected.name }}</p>
+      <p>Reason : {{ r.reason }}</p>
+      <button (click)="addReported(r)">Accept</button>
+      <button (click)="deleteReport(r)">Decline</button>
+    </div>
+  </div>
+
+  <p style="margin-bottom: 2rem; margin-top: 2rem">Unsuspension Request</p>
+  <div class="container_request" *ngFor="let r of unsuspensionRequest">
+    <p>Reported : {{ r.user.name }}</p>
+    <p>Reason : {{ r.reason }}</p>
+    <button (click)="addUnsuspend(r)">Decline</button>
+    <button (click)="deleteUnsuspend(r)">Unsuspend</button>
+  </div>
+</div>

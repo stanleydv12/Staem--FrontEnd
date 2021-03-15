@@ -1,0 +1,31 @@
+div {
+  padding: 2rem;
+  p {
+    font-family: "Space Marine Nominal";
+    font-size: 30px;
+    color: white;
+  }
+
+  .profile_owned_games {
+    background-color: #555555;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 400px;
+        min-width: 400px;
+        padding: 1rem;
+      }
+
+      p {
+        font-family: "Dubai Light";
+        font-size: 20px;
+        color: lightgrey;
+      }
+    }
+  }
+}
