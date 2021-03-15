@@ -10,6 +10,7 @@ import { subscribe } from 'graphql';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  paginator: any;
   userId: any | undefined;
   myProfile: any | undefined;
   id: any | undefined;
@@ -34,6 +35,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.paginator = 1;
     this.profilePaginator = 1;
     this.userId = this.activatedRoute.snapshot.paramMap.get('id');
 
@@ -56,16 +58,18 @@ export class ProfileComponent implements OnInit {
           }
           this.getUser();
           this.getUserProfile();
+          this.checkFriend();
         });
     } else {
       this.auth = false;
+      this.getUser();
+      this.getUserProfile();
+      this.checkFriend();
     }
-    this.getUser();
-    this.getUserProfile();
-    this.checkFriend();
   }
 
   private getUser(): void {
+    // alert(this.id);
     const id = this.id;
     this.apollo
       .query<{ user: any }>({
@@ -146,14 +150,14 @@ export class ProfileComponent implements OnInit {
     this.apollo
       .query({
         query: gql`
-          query asdf($user_id: ID!) {
-            getProfileComment(input: $user_id) {
+          query asdf($user_id: ID!, $paginator: Int!) {
+            getProfileComment(id: $user_id, paginator: $paginator) {
               comment
               user_id
             }
           }
         `,
-        variables: { user_id: this.profileUser.id },
+        variables: { user_id: this.profileUser.id, paginator: this.paginator },
       })
       .subscribe(({ data }) => {
         this.profileComment = (data as any).getProfileComment;
@@ -260,7 +264,7 @@ export class ProfileComponent implements OnInit {
     this.profilePaginator++;
     this.getProfileReview();
     this.getProfileDiscussion();
-    alert(this.profilePaginator);
+    // alert(this.profilePaginator);
     // window.location.reload();
   }
 
@@ -269,7 +273,7 @@ export class ProfileComponent implements OnInit {
       this.profilePaginator--;
       this.getProfileReview();
       this.getProfileDiscussion();
-      alert(this.profilePaginator);
+      // alert(this.profilePaginator);
       // window.location.reload();
     }
   }
@@ -301,6 +305,39 @@ export class ProfileComponent implements OnInit {
       .subscribe(({ data }) => {
         // @ts-ignore
         this.addButton = (data as boolean).checkFriend;
+      });
+  }
+
+  prevItem() {
+    this.paginator--;
+    this.getProfileComment();
+  }
+
+  nextItem() {
+    this.paginator++;
+    this.getProfileComment();
+  }
+
+  createRequest() {
+    this.apollo
+      .mutate({
+        mutation: gql`
+          mutation asdf($user_id: ID!, $friend_id: ID!) {
+            createFriendRequest(
+              input: { user_id: $user_id, friend_id: $friend_id }
+            ) {
+              friend_id
+              user_id
+            }
+          }
+        `,
+        variables: {
+          user_id: this.loggedUser.id,
+          friend_id: this.profileUser.id,
+        },
+      })
+      .subscribe(({ data }) => {
+        alert('Successfully send friend request to a user');
       });
   }
 }

@@ -30,6 +30,7 @@ export class CommunityComponent implements OnInit {
   contentDiscussion: boolean;
   chosenDiscussion: any | undefined;
   chosenDiscussionDetail: any;
+  chosenContentId: any;
 
   constructor(private apollo: Apollo) {
     this.imgvideos = false;
@@ -64,7 +65,8 @@ export class CommunityComponent implements OnInit {
     this.disc = true;
   }
 
-  getCommunityContentDetail(id: string): void {
+  getCommunityContentDetail(id: any): void {
+    this.chosenContentId = id;
     let temp;
     this.apollo
       .query({
@@ -97,7 +99,7 @@ export class CommunityComponent implements OnInit {
           }
         `,
         variables: {
-          content_id: id.toString(),
+          content_id: id,
           paginator: this.imageVideoPaginator,
         },
       })
@@ -503,11 +505,13 @@ export class CommunityComponent implements OnInit {
 
   nextContent() {
     this.imageVideoPaginator++;
-    this.getCommunityContentDetail(this.chosenContentDetail);
+    console.log(this.chosenContentDetail.id);
+    this.getCommunityContentDetail(this.chosenContentId);
   }
 
   prevContent() {
     this.imageVideoPaginator--;
-    this.getCommunityContentDetail(this.chosenContentDetail);
+    console.log(this.chosenContentDetail.id);
+    this.getCommunityContentDetail(this.chosenContentId);
   }
 }

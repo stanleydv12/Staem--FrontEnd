@@ -21,7 +21,9 @@
       <p>Level : {{ profileUser.level }}</p>
       <p>{{ profileUser.summary }}</p>
       <button *ngIf="myProfile" (click)="editProfile()">Edit Profile</button>
-      <button *ngIf="!addButton && !myProfile">Add Friend</button>
+      <button *ngIf="!addButton && !myProfile" (click)="createRequest()">
+        Add Friend
+      </button>
       <button *ngIf="addButton">Chat</button>
     </div>
     <p>Friends</p>
@@ -50,6 +52,11 @@
     <div class="profile_comment_container" *ngFor="let p of profileComment">
       <img src="{{ profileUser.image }}" alt="" />
       <p>{{ p.comment }}</p>
+    </div>
+
+    <div style="display: flex">
+      <button (click)="prevItem()"><</button>
+      <button (click)="nextItem()">></button>
     </div>
 
     <textarea

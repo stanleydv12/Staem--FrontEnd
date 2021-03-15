@@ -18,7 +18,7 @@ type AvatarBorder {
   price: Int!
 }
 
-type Badge {
+type Badges {
   game_id: ID!
   id: ID!
   image: String!
@@ -272,7 +272,8 @@ type OwnedAvatarBorder {
 }
 
 type OwnedBadge {
-  badge: Badge!
+  badge: Badges!
+  game: Game!
   game_badge_id: ID!
   game_id: ID!
   user: User!
@@ -309,6 +310,15 @@ type OwnedMiniProfileBackground {
 type OwnedProfileBackground {
   item: ProfileBackground!
   item_id: ID!
+  user_id: ID!
+}
+
+type OwnedTradingCard {
+  game: Game!
+  game_id: ID!
+  trading_card: TradingCard!
+  trading_card_id: ID!
+  user: User!
   user_id: ID!
 }
 
@@ -351,6 +361,7 @@ type Query {
   getAllUsersPaginate(paginator: Int!): [User!]!
   getAvatar: [Avatar!]!
   getAvatarBorder: [AvatarBorder!]!
+  getBadges: [Badges!]!
   getCartById(input: String!): [Cart!]!
   getChatSticker: [ChatSticker!]!
   getCommunityContent: [CommunityContent!]!
@@ -385,11 +396,12 @@ type Query {
   getOwnedProfileBackground(id: ID!): [OwnedProfileBackground!]!
   getPersonalizedGames: [Game!]!
   getProfileBackground: [ProfileBackground!]!
-  getProfileComment(input: ID!): [ProfileComment!]!
+  getProfileComment(id: ID!, paginator: Int!): [ProfileComment!]!
   getRecentReview(input: String!): [GameReview!]!
   getRecommendedRequirement(input: String!): RecommendedRequirement!
   getReportRequest: [ReportRequest!]!
   getSuspensionList: [SuspensionList!]!
+  getTradingCards: [TradingCard!]!
   getUnsuspensionRequest: [UnsuspensionRequest!]!
   getUserById(input: ID!): User!
   getWishlists(input: String!): [Wishlist!]
@@ -427,6 +439,12 @@ type SuspensionList {
   suspended: Boolean!
   user: User!
   user_id: ID!
+}
+
+type TradingCard {
+  game_id: ID!
+  id: ID!
+  image: String!
 }
 
 type UnsuspensionRequest {

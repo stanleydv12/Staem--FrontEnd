@@ -38,6 +38,9 @@ import { AdminManagePromoComponent } from './pages/admin-manage-promo/admin-mana
 import { AdminManageUserComponent } from './pages/admin-manage-user/admin-manage-user.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ChatDetailComponent } from './pages/chat-detail/chat-detail.component';
+import { StreamComponent } from './pages/stream/stream.component';
+import { BroadcastComponent } from './pages/broadcast/broadcast.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,9 @@ import { ChatDetailComponent } from './pages/chat-detail/chat-detail.component';
     AdminManageUserComponent,
     ChatComponent,
     ChatDetailComponent,
+    StreamComponent,
+    BroadcastComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

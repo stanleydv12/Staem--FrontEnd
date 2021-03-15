@@ -27,6 +27,8 @@ import { AdminManagePromoComponent } from './pages/admin-manage-promo/admin-mana
 import { AdminManageUserComponent } from './pages/admin-manage-user/admin-manage-user.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ChatDetailComponent } from './pages/chat-detail/chat-detail.component';
+import { StreamComponent } from './pages/stream/stream.component';
+import { BroadcastComponent } from './pages/broadcast/broadcast.component';
 
 const routes: Routes = [
   {
@@ -130,6 +132,14 @@ const routes: Routes = [
   {
     path: 'chat/:id',
     component: ChatDetailComponent,
+  },
+  {
+    path: 'stream',
+    component: StreamComponent,
+  },
+  {
+    path: 'broadcast',
+    component: BroadcastComponent,
   },
 ];
 
